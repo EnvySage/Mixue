@@ -1,8 +1,8 @@
 <template>
     <div class="own-header">
         <span class="header"></span>
-        <div class="header-phone"><h2>{{ phone }}</h2>
-            <div class="header-badge">我的徽章:{{ num_badge }}/45</div>
+        <div class="header-phone"><h3>{{ phone }}</h3>
+            <button class="header-badge">我的徽章:{{ num_badge }}/45 ></button>
         </div>
         <button :class="['header-right', { 'inactive': isInactive }]" @click="handleClick">{{ status }}</button>
     </div>
@@ -29,7 +29,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: auto;
+    margin: 0 10px;
     background-color: #fff;
     flex-direction: row;
 }
@@ -44,7 +45,7 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-h2{
+h3{
     margin: 0px;
 }
 .header-phone {
@@ -56,19 +57,23 @@ h2{
 .header-badge {
     font-size: 14px;
     color: #999;
+    border: none;
+    background-color: white;
+    padding: 0;
+    cursor: pointer;
 }
 .header-right {
     position: relative;
     right: 0;
     margin-left: auto;
-    padding: 10px 20px;
+    padding: auto 20px;
     border: none;
     border-radius: 4px;
     background-color: #ececec;
     color: #000000;
     font-size: 16px;
     cursor: pointer;
-    min-width: 88px;
+    width: 64px;
 }
 .inactive {
     background-color: #f5f5f5;
