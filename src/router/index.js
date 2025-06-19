@@ -22,7 +22,13 @@ const router = createRouter({
       path: '/Own',
       name: 'OwnView',
       component: () => import('../layout/OwnViewLayout.vue'),
+    },
+    {
+      path: '/Details',
+      name: 'DetailsView',
+      component: () => import('../layout/DetailsViewLayout.vue'),
     }
+    
   ],
 })
 
