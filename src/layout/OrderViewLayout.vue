@@ -1,7 +1,5 @@
 <template>
-    <div>
-        这是点餐布局
-    </div>
+点餐
 </template>
 
 <script setup>

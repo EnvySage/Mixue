@@ -1,10 +1,12 @@
 <template>
     <div>
-        这是订单布局
+        <ListTest></ListTest>
     </div>
 </template>
 
 <script setup>
+import ListTest from '@/components/ListComponents/listTest.vue';
+
 
 </script>
 
