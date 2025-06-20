@@ -1,0 +1,328 @@
+{
+  "productList": [
+    {
+      "productId": "001",
+      "name": "棒打鲜橙",
+      "category": "果茶系列",
+      "price": 15.0,
+      "description": "精选新鲜橙子，搭配清新的乌龙茶，果香与茶香完美融合，酸甜适中，清新解渴。",
+      "imageUrl": "https://www.mxbc.com/images/dc9bacab758e13728d1ca20b6a420720.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "芋圆", "price": 1.0, "default": false},
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "脆波波", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "002",
+      "name": "冰鲜柠檬水",
+      "category": "果茶系列",
+      "price": 14.5,
+      "description": "新鲜柠檬搭配优质红茶，酸甜适中，清新提神，是夏日解渴的佳选。",
+      "imageUrl": "https://www.mxbc.com/images/6d7f79f63bd739c49150739e291b010f.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "苹果果冻", "price": 1.0, "default": false},
+          {"name": "荔枝果冻", "price": 1.5, "default": false},
+          {"name": "桂花糕", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "003",
+      "name": "蜜桃四季春",
+      "category": "果茶系列",
+      "price": 16.0,
+      "description": "新鲜水蜜桃搭配四季春茶，果香浓郁，茶香清新，口感细腻，甜而不腻。",
+      "imageUrl": "https://www.mxbc.com/images/7ecbe95c754d7b3ceeb3c0e233a4f7cd.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "红豆", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "004",
+      "name": "草莓啵啵",
+      "category": "果茶系列",
+      "price": 15.5,
+      "description": "新鲜草莓搭配 Q 弹珍珠，果香浓郁，口感丰富，是草莓爱好者的首选。",
+      "imageUrl": "https://www.mxbc.com/images/24b8215cc118e94816ff4bfc5b4f5359.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "芒果丁", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 1.0, "default": false},
+          {"name": "珍珠", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "005",
+      "name": "茉莉绿茶",
+      "category": "纯茶系列",
+      "price": 14.0,
+      "description": "精选茉莉花茶，茶香浓郁，清新自然，适合喜欢纯茶的顾客。",
+      "imageUrl": "https://www.mxbc.com/images/a5ae89a4698f861c60e90ef2107292fb.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 1.5, "default": false},
+          {"name": "椰果", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "006",
+      "name": "红茶",
+      "category": "纯茶系列",
+      "price": 15.0,
+      "description": "经典红茶，口感醇厚，茶香浓郁，适合喜欢传统茶饮的顾客。",
+      "imageUrl": "https://www.mxbc.com/images/3ade549f789a7bfd44e1d932555e22c1.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "007",
+      "name": "三拼霸霸奶茶",
+      "category": "奶茶特饮",
+      "price": 16.5,
+      "description": "香浓奶茶搭配 Q 弹珍珠、软糯红豆和爽脆椰果，口感丰富，层次分明。",
+      "imageUrl": "https://www.mxbc.com/images/60b8c35972869a77529373cfbc37d00c.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "红豆", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "008",
+      "name": "双拼奶茶",
+      "category": "奶茶特饮",
+      "price": 17.0,
+      "description": "香浓奶茶搭配 Q 弹珍珠和软糯红豆，口感丰富，奶香浓郁。",
+      "imageUrl": "https://www.mxbc.com/images/0bb1459e3eae6316047dc4f79a21a5d0.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "红豆", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "009",
+      "name": "珍珠奶茶",
+      "category": "奶茶特饮",
+      "price": 13.0,
+      "description": "经典珍珠奶茶，香浓奶茶搭配 Q 弹珍珠，口感醇厚，回味无穷。",
+      "imageUrl": "https://www.mxbc.com/images/c83fefbdc521f353a36b979273c1700b.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "010",
+      "name": "草莓冰激凌",
+      "category": "冰激凌系列",
+      "price": 15.5,
+      "description": "精选草莓口味冰激凌，口感细腻，草莓香浓，甜而不腻，是夏日消暑的绝佳选择。",
+      "imageUrl": "https://www.mxbc.com/images/a26f9eee2a1143f4c140f32307ac7522.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "011",
+      "name": "芒果冰激凌",
+      "category": "冰激凌系列",
+      "price": 15.5,
+      "description": "精选芒果口味冰激凌，果香浓郁，口感细腻，甜而不腻，是芒果爱好者的首选。",
+      "imageUrl": "https://www.mxbc.com/images/2699e1f7ff7c7c908d8217036ab28031.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 2.0, "default": false}
+        ]
+      }
+    },
+    {
+      "productId": "012",
+      "name": "奥利奥冰激凌",
+      "category": "冰激凌系列",
+      "price": 15.5,
+      "description": "奥利奥饼干碎搭配香浓冰激凌，口感丰富，甜咸适中，是冰激凌爱好者的不二之选。",
+      "imageUrl": "https://www.mxbc.com/images/4095855ad44956927ce29412a8f9d33f.jpg",
+      "options": {
+        "temperature": [
+          {"name": "正常冰", "default": true},
+          {"name": "少冰", "default": false},
+          {"name": "温热", "default": false}
+        ],
+        "sugar": [
+          {"name": "正常糖", "default": true},
+          {"name": "七分糖", "default": false},
+          {"name": "五分糖", "default": false},
+          {"name": "三分糖", "default": false},
+          {"name": "无糖", "default": false}
+        ],
+        "extras": [
+          {"name": "珍珠", "price": 1.0, "default": false},
+          {"name": "椰果", "price": 1.0, "default": false},
+          {"name": "布丁", "price": 2.0, "default": false}
+        ]
+      }
+    }
+  ]
+}
