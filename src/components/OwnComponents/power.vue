@@ -3,29 +3,29 @@
         <div class="power-header">
             <div class="power-left" >
                 <div class="power-title">
-                    <h4>{{ rank }}</h4>
-                    <div class="power-experience" v-if="min_exp<=exp && exp<=max_exp">
-                        <div class="power-exp">甜蜜值 {{ exp }} / {{ max_exp }}</div>
+                    <h4>{{ props.rank }}</h4>
+                    <div class="power-experience" v-if="props.min_exp<=props.exp && props.exp<=props.max_exp">
+                        <div class="power-exp">甜蜜值 {{ props.exp }} / {{ props.max_exp }}</div>
                         <div class="progress-bar-container">
                             <div class="progress-bar" id="progress-bar"></div>
                         </div>
-                        <div class="power-exp-text">再升一级可享【{{ next_exp }}】等权益</div>
+                        <div class="power-exp-text">再升一级可享【{{ props.next_exp }}】等权益</div>
                     </div>
                     <div class="power-experience" v-else>
                         <div class="power-exp-text">
-                            累计{{ min_exp + 1}}点甜蜜值，享【{{ next_exp }}】等权益
+                            累计{{ props.min_exp + 1}}点甜蜜值，享【{{ props.next_exp }}】等权益
                         </div>
                     </div>
                 </div>
             </div>
             <div class="power-right">
-                <img :src=props.png[0] alt="" class="power-img">
+                <img :src=props.png alt="" class="power-img">
             </div>
         </div>
         <div class="power-content">
             <div class="power-item">
                 <button class="power-item-title">
-                    您已解锁<span style="color:#f40">{{ all_power }}</span>项特权 >
+                    您已解锁<span style="color:#f40">{{ props.all_power }}</span>项特权 >
                 </button>
                 <div class="power-nav">
                     <div class="power-nav-item" @click="() => {activeTab = 'tab1'}" id="tab1" style="background-color: rgb(242, 246, 255);">
@@ -36,15 +36,36 @@
                     </div>
                     <div class="power-nav-item" @click="() => {activeTab = 'tab3'}" id="tab3">
                         <div  style="color: rgb(66, 66, 66);">心意礼</div>
+                    </div>  
+                </div>
+                <div class="power-nav-contents">
+                    <div class="power-nav-content" v-if="activeTab === 'tab1'">
+                            <div v-for="i in props.powericon[0].elements" :key="i.id" class="power-for">
+                                <span :class= i.icon class="iconfont"></span>
+                                <span class="power-for-name">{{ i.name }}</span>
+                                <span class="power-for-desc">{{ i.desc }}</span>
+                            </div>
+                    </div>
+                    <div class="power-nav-content" v-if="activeTab === 'tab2'" >
+                            <div v-for="i in props.powericon[1].elements" :key="i.id" class="power-for">
+                                <span :class= i.icon class="iconfont"></span>
+                                <span class="power-for-name">{{ i.name }}</span>
+                                <span class="power-for-desc">{{ i.desc }}</span>
+                            </div>
+                    </div>
+                    <div class="power-nav-content" v-if="activeTab === 'tab3'">
+                            <div v-for="i in props.powericon[2].elements" :key="i.id" class="power-for">
+                                <span :class= i.icon class="iconfont"></span>
+                                <span class="power-for-name">{{ i.name }}</span>
+                                <span class="power-for-desc">{{ i.desc }}</span>
+                            </div>
                     </div>
                 </div>
-            <div class="power-nav-content"></div>
-                <div class="power-nav-content1" v-if="activeTab === 'tab1'">
-                    <!-- <div v-for="[item, index] in props.icon" :key='item.id' ></div> -->
-                </div>
+                
             </div>
         </div>
     </div>
+    
 </template>
 
 <script setup>
@@ -74,16 +95,16 @@ const props = defineProps({
         default: '生日福利'
     },
     png:{
-        type: Array,
-        default:[]
+        type: String,
+        default:''
     },
     all_power:{
         type: Number,
         default: 6
     },
-    icon:{
-        type: Array,
-        default:[]
+    powericon:{
+        type: Object,
+        default:null
     }
 });
 
@@ -94,6 +115,7 @@ function updateProgressBar(value) {
 }
 onMounted(() => {
     updateProgressBar(props.exp / props.max_exp * 100);
+    console.log(props.rank);
 });
 const activeTab = ref('tab1');
 watch(activeTab, (newVal, oldVal) => {
@@ -136,6 +158,7 @@ h4{
     background: linear-gradient(to right, rgb(87, 162, 255), rgb(50, 94, 255));
     display: flex;
     flex-direction: column;
+     overflow: hidden;
 }
 .power-header{
     display: flex;
@@ -155,7 +178,7 @@ h4{
     position: relative;
     top: 0;
     max-width: 70%;
-    margin: 0 20px;
+    margin: 0 10px;
     text-align: center;
 }
 .power-title{
@@ -201,6 +224,7 @@ h4{
 .power-nav{
     display: flex;
     flex-direction: row;
+     /* overflow: hidden; */
 }
 .power-nav-item {
   
@@ -209,8 +233,53 @@ h4{
   
   margin: 10px 10px 0 0;
   font-size: 12px;
-  padding: 5px 5px;
+  padding: 5px 10px;
   border-radius: 50px;
   border: 1px solid rgb(242, 246, 255);
+   /* overflow: hidden; */
 }
+.power-nav-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 10px;
+    overflow: hidden;
+    width: 100%;
+    overflow-x: auto
+    
+}
+.power-nav-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+.power-for{
+    margin-top: 5px;
+    margin-right:  40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.iconfont{
+    font-size: 30px;
+    color: #749bfe;
+}
+.power-for-name{
+    font-size: 12px;
+    color: #333333;
+    margin-top: 5px;
+    white-space: nowrap;
+}
+.power-for-desc{
+    font-size: 10px;
+    color: #999999;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
 </style>
