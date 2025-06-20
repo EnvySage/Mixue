@@ -48,7 +48,7 @@ const router = createRouter({
       
     },
     {
-      path: '/Details',
+      path: '/Details/:id',
       name: 'DetailsView',
       component: () => import('../layout/DetailsViewLayout.vue'),
     }
