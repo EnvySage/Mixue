@@ -1,12 +1,13 @@
 <template>
     <div>
-        这是首页布局
-        <mainTest></mainTest>
+        <homepic></homepic>
+        <vip></vip>
     </div>
 </template>
 
 <script setup>
-import mainTest from '@/components/MainComponents/mainTest.vue'
+import homepic from '@/components/MainComponents/Homepicture.vue'
+import vip from '@/components/MainComponents/VipCard.vue'
 </script>
 
 <style scoped>
