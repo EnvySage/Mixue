@@ -1,7 +1,7 @@
 {
   "productList": [
     {
-      "productId": "001",
+      "productId": "1",
       "name": "棒打鲜橙",
       "category": "果茶系列",
       "price": 15.0,
@@ -28,7 +28,7 @@
       }
     },
     {
-      "productId": "002",
+      "productId": "2",
       "name": "冰鲜柠檬水",
       "category": "果茶系列",
       "price": 14.5,
@@ -55,7 +55,7 @@
       }
     },
     {
-      "productId": "003",
+      "productId": "3",
       "name": "蜜桃四季春",
       "category": "果茶系列",
       "price": 16.0,
@@ -82,7 +82,7 @@
       }
     },
     {
-      "productId": "004",
+      "productId": "4",
       "name": "草莓啵啵",
       "category": "果茶系列",
       "price": 15.5,
@@ -109,7 +109,7 @@
       }
     },
     {
-      "productId": "005",
+      "productId": "5",
       "name": "茉莉绿茶",
       "category": "纯茶系列",
       "price": 14.0,
@@ -136,7 +136,7 @@
       }
     },
     {
-      "productId": "006",
+      "productId": "6",
       "name": "红茶",
       "category": "纯茶系列",
       "price": 15.0,
@@ -163,7 +163,7 @@
       }
     },
     {
-      "productId": "007",
+      "productId": "7",
       "name": "三拼霸霸奶茶",
       "category": "奶茶特饮",
       "price": 16.5,
@@ -190,7 +190,7 @@
       }
     },
     {
-      "productId": "008",
+      "productId": "8",
       "name": "双拼奶茶",
       "category": "奶茶特饮",
       "price": 17.0,
@@ -217,7 +217,7 @@
       }
     },
     {
-      "productId": "009",
+      "productId": "9",
       "name": "珍珠奶茶",
       "category": "奶茶特饮",
       "price": 13.0,
@@ -244,7 +244,7 @@
       }
     },
     {
-      "productId": "010",
+      "productId": "10",
       "name": "草莓冰激凌",
       "category": "冰激凌系列",
       "price": 15.5,
@@ -271,7 +271,7 @@
       }
     },
     {
-      "productId": "011",
+      "productId": "11",
       "name": "芒果冰激凌",
       "category": "冰激凌系列",
       "price": 15.5,
@@ -298,7 +298,7 @@
       }
     },
     {
-      "productId": "012",
+      "productId": "12",
       "name": "奥利奥冰激凌",
       "category": "冰激凌系列",
       "price": 15.5,
