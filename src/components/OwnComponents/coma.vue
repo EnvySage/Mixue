@@ -30,14 +30,14 @@
     justify-content: space-between;
     align-items: center;
     width: auto;
-    margin: 0 10px;
-    background-color: #fff;
+    margin: 20px 10px;
+    
     flex-direction: row;
 }
 .header {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-image: url('https://img.icons8.com/color/48/000000/user-male.png');
     border-radius: 50%;
     background-color: rgb(214, 214, 214);
@@ -58,7 +58,7 @@ h3{
     font-size: 14px;
     color: #999;
     border: none;
-    background-color: white;
+   background-color:transparent ;
     padding: 0;
     cursor: pointer;
 }
@@ -69,9 +69,9 @@ h3{
     padding: auto 20px;
     border: none;
     border-radius: 4px;
-    background-color: #ececec;
+    background-color: #ffffff;
     color: #000000;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     width: 64px;
 }

@@ -19,21 +19,37 @@
                 </div>
             </div>
             <div class="power-right">
-                <img :src="`../../img/own/own-rank/${png}.png`" alt="" class="power-img">
+                <img :src=props.png[0] alt="" class="power-img">
             </div>
         </div>
         <div class="power-content">
             <div class="power-item">
-                <div class="power-item-title">
-                    您已解锁
+                <button class="power-item-title">
+                    您已解锁<span style="color:#f40">{{ all_power }}</span>项特权 >
+                </button>
+                <div class="power-nav">
+                    <div class="power-nav-item" @click="() => {activeTab = 'tab1'}" id="tab1" style="background-color: rgb(242, 246, 255);">
+                        <div  style="color: rgb(66, 66, 66);">每日礼</div  >
+                    </div>
+                    <div class="power-nav-item" @click="() => {activeTab = 'tab2'}" id="tab2">
+                        <div  style="color: rgb(66, 66, 66);">成长礼</div  >
+                    </div>
+                    <div class="power-nav-item" @click="() => {activeTab = 'tab3'}" id="tab3">
+                        <div  style="color: rgb(66, 66, 66);">心意礼</div>
+                    </div>
                 </div>
+            <div class="power-nav-content"></div>
+                
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted,defineProps } from 'vue';
+import { onMounted,defineProps,ref,watch } from 'vue';
+import { RouterLink } from 'vue-router';
+
+
 const props = defineProps({
     rank: {
         type: String,
@@ -56,17 +72,49 @@ const props = defineProps({
         default: '生日福利'
     },
     png:{
-        type: String,
-        default:'own-weixuehua'
+        type: Array,
+        default:[]
+    },
+    all_power:{
+        type: Number,
+        default: 6
     }
-
 });
+
+
 function updateProgressBar(value) {
     const progressBar = document.getElementById('progress-bar');
     progressBar.style.width = value + '%'; // 设置进度条的宽度
 }
 onMounted(() => {
     updateProgressBar(props.exp / props.max_exp * 100);
+});
+const activeTab = ref('tab1');
+watch(activeTab, (newVal, oldVal) => {
+  if (newVal === 'tab1') {
+    const st=document.getElementById('tab1');
+    st.style.backgroundColor = 'rgb(242, 246, 255)';
+    tab2.style.backgroundColor = 'white';
+    tab3.style.backgroundColor = 'white';
+    console.log('tab1');    
+    return;
+    }
+  if (newVal === 'tab2') {
+    const st=document.getElementById('tab2');
+    st.style.backgroundColor = 'rgb(242, 246, 255)';
+    tab1.style.backgroundColor = 'white';
+    tab3.style.backgroundColor = 'white';
+    console.log('tab2');
+    return;
+  }
+  if (newVal === 'tab3') {
+    const st=document.getElementById('tab3');
+    st.style.backgroundColor = 'rgb(242, 246, 255)';
+    tab1.style.backgroundColor = 'white';
+    tab2.style.backgroundColor = 'white';
+    console.log('tab3');
+    return;
+  }
 });
 </script>
 
@@ -92,7 +140,7 @@ h4{
     font-size: 14px;
 }
 .power-left{
-    width: 50%;
+    width: 60%;
     margin: 0 20px;
     line-height: 29px;
     color: #ffffff;
@@ -128,5 +176,35 @@ h4{
 .power-exp-text{
     font-size: 10px;
     margin-top: 5px;
+}
+.power-item{
+    width: 99%-40px;
+    margin: 2px 2px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+.power-item-title{
+    font-size:14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    padding: 0;
+}
+.power-nav{
+    display: flex;
+    flex-direction: row;
+}
+.power-nav-item {
+  
+  cursor: pointer;
+  transition: color 0.3s ease;
+  
+  margin: 10px 10px 0 0;
+  font-size: 12px;
+  padding: 5px 5px;
+  border-radius: 50px;
+  border: 1px solid rgb(242, 246, 255);
 }
 </style>
