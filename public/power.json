@@ -1,0 +1,26 @@
+{
+    "power":[
+        {
+            "powerid":1,
+            "rank":"微雪花",
+            "max_exp":30,
+            "min_exp":0,
+            "next-exp":"生日福利",
+            "pngs":"src/img/own/own-rank/own1.png",
+            "all_power":6,
+            "powericon":[
+                
+                {"id":1,"name":"周一咖啡日","icon":"icon-coffeebean","desc":"美式3.99元起"},
+                {"id":2,"name":"周二抵现日","icon":"icon-jifendixian","desc":"雪王币当钱花"},
+                {"id":3,"name":"周三会员日","icon":"icon-huiyuanri","desc":"满12元减2元"},
+                {"id":4,"name":"周四加料日","icon":"icon-ic-jialiao","desc":"满12元可享"},
+                {"id":5,"name":"周五秒杀日","icon":"icon-kafei","desc":"雪王币秒杀券"},
+                {"id":6,"name":"新手礼包","icon":"icon-libao","desc":"20元券包"}
+
+            ],
+            "color":[
+                
+            ]
+        }
+    ]
+}

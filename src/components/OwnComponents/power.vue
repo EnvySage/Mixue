@@ -39,7 +39,9 @@
                     </div>
                 </div>
             <div class="power-nav-content"></div>
-                
+                <div class="power-nav-content1" v-if="activeTab === 'tab1'">
+                    <div v-for="[item, index] in props.icon" :key='item.id' ></div>
+                </div>
             </div>
         </div>
     </div>
@@ -78,6 +80,10 @@ const props = defineProps({
     all_power:{
         type: Number,
         default: 6
+    },
+    icon:{
+        type: Array,
+        default:[]
     }
 });
 
