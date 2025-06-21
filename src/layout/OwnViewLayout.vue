@@ -3,10 +3,10 @@
         这是我的布局
         <coma></coma>
         <div class="power-item">
-            <div v-for="i in jsonData" :key="i.powerid" class="power-item-container">
+            <div v-for="(i,index) in jsonData" :key="i.powerid" class="power-item-container">
                 <power :rank="i.rank" :exp="exp" :max_exp="i.max_exp" :min_exp="i.min_exp" 
                 :next_exp="i.next_exp" :current_exp="i.current_exp" :all_power="i.all_power" :png="imgList[i.powerid-1]" 
-                :powericon="i.powericon" :color="i.color"></power>
+                :powericon="i.powericon" :color="i.color" :id="index"></power>
             </div>
         </div> 
 
@@ -30,7 +30,7 @@ const exp = ref(90);
 const imgList = [img1,img2,img3,img4]
 const jsonData = ref([]);
 jsonData.value = json.power;
-
+const element = document.querySelectorAll('.power-item-container');
 
 </script>
 
@@ -55,6 +55,6 @@ jsonData.value = json.power;
     scroll-snap-stop: always;
 }
 .power-item::-webkit-scrollbar {
-    display: none;
+
 }
 </style>
