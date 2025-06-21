@@ -7,20 +7,35 @@ const router = createRouter({
       path: '/',
       name: 'MainView',
       component: () => import('../layout/MainViewLayout.vue'),
-      meta: {id:0},
+      meta: { id: 0 },
+    },
+    {
+      path: '/red',
+      name: 'red',
+      component: () => import('../views/MainView/RedView.vue'),
+    },
+    {
+      path: '/daily',
+      name: 'daily',
+      component: () => import('../views/MainView/DailyView.vue'),
+    },
+    {
+      path: '/gift',
+      name: 'gift',
+      component: () => import('../views/MainView/CardView.vue'),
     },
     {
       path: '/Order',
       name: 'OrderView',
       component: () => import('../layout/OrderViewLayout.vue'),
-      meta: {id:1},
+      meta: { id: 1 },
       redirect: '/Order/ClassicMenu',
       children: [
         {
           path: 'ClassicMenu',
           name: 'classicMenu',
           component: () => import('../views/OrderView/classicMenu.vue'),
-          meta: {id:1},
+          meta: { id: 1 },
         },
         {
           path: 'zeroExchange',
@@ -43,14 +58,14 @@ const router = createRouter({
       path: '/List',
       name: 'ListView',
       component: () => import('../layout/ListViewLayout.vue'),
-      meta: {id:2},
+      meta: { id: 2 },
     },
     {
       path: '/Own',
       name: 'OwnView',
       component: () => import('../layout/OwnViewLayout.vue'),
 
-      meta: {id:3},
+      meta: { id: 3 },
     },
     {
       path: '/Details/:id',
