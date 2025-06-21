@@ -4,28 +4,7 @@
             <div class="power-left" >
                 <div class="power-title">
                     <h4>{{ props.rank }}</h4>
-                    <div class="power-experience" v-if="props.min_exp<=props.exp && props.exp<=props.max_exp">
-                        <div v-if="props.max_exp!=10000">
-                            <div class="power-exp">甜蜜值 {{ props.exp }} / {{ props.max_exp }}</div>
-                            <div class="progress-bar-container" :style="`background-color: ${randomColor3};`">
-                                <div class="progress-bar" id="progress-bar" :style="`width: ${props.exp / props.max_exp * 100}%; `"></div>
-                            </div>
-                            <div class="power-exp-text">再升一级可享【{{ props.next_exp }}】等权益</div>
-                        </div>
-                        <div v-else>
-                            <div class="power-exp-text">已到达最高等级，可享有最高{{ all_power }}种权益</div>   
-                        </div>
-                    </div>
-                    <div class="power-experience" v-if="props.exp<props.min_exp">
-                        <div class="power-exp-text">
-                            累计{{ props.min_exp + 1}}点甜蜜值，享【{{ props.current_exp }}】等权益
-                        </div>
-                    </div>
-                    <div class="power-experience" v-if="props.exp>props.max_exp">
-                        <div class="power-exp-text">
-                            您已超越该等级 -
-                        </div>
-                    </div>
+                    <power_nav_exp :exp="props.exp" :max_exp="props.max_exp" :min_exp="props.min_exp" :next_exp="props.next_exp" :current_exp="props.current_exp" :all_power="props.all_power" :color="props.color"></power_nav_exp>
                 </div>
             </div>
             <div class="power-right">
@@ -54,42 +33,17 @@
                 <div class="power-nav-contents">
                     <div class="power-nav-content" v-if="activeTab === 'tab1'">
                             <div v-for="i in props.powericon[0].elements" :key="i.id" class="power-for">
-                                <div class="iconfont" v-if="i.status === false">
-                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
-                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1;font-weight: 600 `"></span>
-                                 </div>
-                                 <div class="iconfont" v-else>
-                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
-                                 </div>
-                                <span class="power-for-name">{{ i.name }}</span>
-                                <span class="power-for-desc">{{ i.desc }}</span>
+                                <power_nav_content :i="i" :touming="touming" :randomColor4="randomColor4" :lock="lock"></power_nav_content>
                             </div>
                     </div>
                     <div class="power-nav-content" v-if="activeTab === 'tab2'" >
                             <div v-for="i in props.powericon[1].elements" :key="i.id" class="power-for">
-                                <!-- <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);`"></span> -->
-                                 <div class="iconfont" v-if="i.status === false">
-                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
-                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 ;font-weight: 600`"></span>
-                                 </div>
-                                 <div class="iconfont" v-else>
-                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
-                                 </div>
-                                <span class="power-for-name">{{ i.name }}</span>
-                                <span class="power-for-desc">{{ i.desc }}</span>
+                                <power_nav_content :i="i" :touming="touming" :randomColor4="randomColor4" :lock="lock"></power_nav_content>
                             </div>
                     </div>
                     <div class="power-nav-content" v-if="activeTab === 'tab3'">
                             <div v-for="i in props.powericon[2].elements" :key="i.id" class="power-for">
-                                <div class="iconfont" v-if="i.status === false">
-                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
-                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 ;font-weight: 600`"></span>
-                                 </div>
-                                 <div class="iconfont" v-else>
-                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
-                                 </div>
-                                <span class="power-for-name">{{ i.name }}</span>
-                                <span class="power-for-desc">{{ i.desc }}</span>
+                                <power_nav_content :i="i" :touming="touming" :randomColor4="randomColor4" :lock="lock"></power_nav_content>
                             </div>
                     </div>
                 </div>
@@ -103,7 +57,8 @@
 <script setup>
 import { onMounted,defineProps,ref,watch } from 'vue';
 import { RouterLink } from 'vue-router';
-
+import power_nav_content from '../OwnComponents/powercomponent/power_nav_content.vue';
+import power_nav_exp from '../OwnComponents/powercomponent/power_nav_exp.vue';
 
 const props = defineProps({
     rank: {
@@ -182,13 +137,7 @@ h4{
     justify-content: space-between;
     
 }
-.power-exp{
-    font-size: 14px;
-}
-.power-experience{
-    height: 80px;
-    /* opacity: 0.8; */
-}
+
 .power-left{
     width: 75%;
     margin: 0 20px;
@@ -206,27 +155,7 @@ h4{
     display: flex;
     flex-direction: column;
 }
-.progress-bar-container {
-    width: 100%; /* 定义进度条容器的宽度 */
-    background-color: rgb(112, 163, 251); /* 定义背景颜色 */
-    height: 5px;
-    
-    border-radius: 5px; /* 可选：添加圆角 */
-    overflow: hidden; /* 确保超出容器的内容不可见 */
-}
-.progress-bar {
-    height: 5px; /* 定义进度条的高度 */
-    width: 0%; /* 初始宽度为0% */
-    background-color: #ffffff; /* 定义进度条的颜色 */
-    text-align: center;
-    line-height: 5px;
-    color: white;
-    transition: width 0.5s; /* 添加过渡效果，使宽度变化平滑 */
-}
-.power-exp-text{
-    font-size: 12px;
-    margin-top: 5px;
-}
+
 .power-item{
     width: 99%-40px;
     margin: 2px 2px;
@@ -288,7 +217,7 @@ h4{
     transition: color 0.3s ease;
 }
 .iconfont{
-    font-size: 30px;
+    /* font-size: 30px; */
     color: #749bfe;
     position: relative;
 }

@@ -53,13 +53,10 @@ const props = defineProps({
 }
 .sign-right {
     display: flex;
-    
-   
     width: 50%;
-   
 }
 .sign-name {
-     display: flex;
+    display: flex;
     font-size: 12px;
     flex-wrap: nowrap;
     color: #666;

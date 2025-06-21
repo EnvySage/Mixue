@@ -169,5 +169,12 @@
         {"id":1,"name":"雪王币","num":"215","png":"src/img/own/own-sign/own1.png"},
         {"id":2,"name":"优惠券","num":"10","png":"src/img/own/own-sign/own2.png"},
         {"id":3,"name":"礼品卡","num":"点击查看","png":"src/img/own/own-sign/own3.png"}
+    ],
+    "moreserver":[
+        {"id":1,"name":"兑换中心","icon":"icon-caidan"},
+        {"id":2,"name":"雪王福利群","icon":"icon-laodaixin-quanbao"},
+        {"id":3,"name":"问题反馈","icon":"icon-kefu1"},
+        {"id":4,"name":"加盟咨询","icon":"icon-jiameng"},
+        {"id":5,"name":"关于我们","icon":"icon-zhuyi"}
     ]
 }

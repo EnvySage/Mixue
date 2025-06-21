@@ -68,6 +68,11 @@ const router = createRouter({
       meta: { id: 3 },
     },
     {
+      path: '/power',
+      name: 'power',
+      component:()=>import('../views/MainView/rankView.vue')
+    },
+    {
       path: '/Details/:id',
       name: 'DetailsView',
       component: () => import('../layout/DetailsViewLayout.vue'),
