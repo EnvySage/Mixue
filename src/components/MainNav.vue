@@ -13,8 +13,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted, ref,watch} from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import mainOff from '@/img/Nav/main-off.png'
 import orderOff from '@/img/Nav/order-off.png'
@@ -26,6 +26,7 @@ import listOn from '@/img/Nav/list-on.png'
 import ownOn from '@/img/Nav/own-on.png'
 
 const router = useRouter()
+const route = useRoute()
 
 const navList = [
     {
@@ -50,7 +51,25 @@ const navList = [
     }
 ]
 
-const activeIndex = ref(0) // 默认激活首页
+const activeIndex = ref(0) 
+
+onMounted(() => {
+  const index = route.meta.id;
+  if (index !== -1) {
+    activeIndex.value = index;
+  }
+});
+
+watch(
+  () => route.meta.id,
+  (newId) => {
+    const index = newId;
+    if (index !== -1) {
+      activeIndex.value = index;
+    }
+  },
+    { immediate: true } 
+);
 
 const handleNavClick = (path, index) => {
     activeIndex.value = index
@@ -74,6 +93,7 @@ const isActive = (index) => {
     left: 0;
     right: 0;
     border-top: 1px solid #ccc;
+    z-index: 99;
 }
 .detail-box {
     display: flex;
