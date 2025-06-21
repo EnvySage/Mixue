@@ -1,13 +1,13 @@
 <template>
     <div>
-        <homepic></homepic>
         <vip></vip>
+        <homefct></homefct>
     </div>
 </template>
 
 <script setup>
-import homepic from '@/components/MainComponents/Homepicture.vue'
 import vip from '@/components/MainComponents/VipCard.vue'
+import homefct from '@/components/MainComponents/Homefunction.vue'
 </script>
 
 <style scoped>
