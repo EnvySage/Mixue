@@ -13,7 +13,7 @@
 
 <script setup>
 import breadTitle from '@/components/OrderComponents/breadTitle.vue';
-import TopBar from '@/components/OrderComponents/TopBar.vue';
+import TopBar from '@/components/OrderComponents/topBar.vue';
 import destinationCard from '@/components/OrderComponents/destinationCard.vue';
 </script>
 
@@ -34,7 +34,7 @@ import destinationCard from '@/components/OrderComponents/destinationCard.vue';
 }
 .scroll{
     position: absolute;
-    top:300px;
+    top:220px;
     bottom: 0;
     overflow: hidden;
 }

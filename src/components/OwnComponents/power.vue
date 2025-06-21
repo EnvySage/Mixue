@@ -1,19 +1,29 @@
 <template>
-    <div class="power">
+    <div class="power" id="power" :style="{background: `linear-gradient(to right, ${randomColor1}, ${randomColor2})`}">
         <div class="power-header">
             <div class="power-left" >
                 <div class="power-title">
                     <h4>{{ props.rank }}</h4>
                     <div class="power-experience" v-if="props.min_exp<=props.exp && props.exp<=props.max_exp">
-                        <div class="power-exp">甜蜜值 {{ props.exp }} / {{ props.max_exp }}</div>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" id="progress-bar"></div>
+                        <div v-if="props.max_exp!=10000">
+                            <div class="power-exp">甜蜜值 {{ props.exp }} / {{ props.max_exp }}</div>
+                            <div class="progress-bar-container" :style="`background-color: ${randomColor3};`">
+                                <div class="progress-bar" id="progress-bar" :style="`width: ${props.exp / props.max_exp * 100}%; `"></div>
+                            </div>
+                            <div class="power-exp-text">再升一级可享【{{ props.next_exp }}】等权益</div>
                         </div>
-                        <div class="power-exp-text">再升一级可享【{{ props.next_exp }}】等权益</div>
+                        <div v-else>
+                            <div class="power-exp-text">已到达最高等级，可享有最高{{ all_power }}种权益</div>   
+                        </div>
                     </div>
-                    <div class="power-experience" v-else>
+                    <div class="power-experience" v-if="props.exp<props.min_exp">
                         <div class="power-exp-text">
-                            累计{{ props.min_exp + 1}}点甜蜜值，享【{{ props.next_exp }}】等权益
+                            累计{{ props.min_exp + 1}}点甜蜜值，享【{{ props.current_exp }}】等权益
+                        </div>
+                    </div>
+                    <div class="power-experience" v-if="props.exp>props.max_exp">
+                        <div class="power-exp-text">
+                            您已超越该等级 -
                         </div>
                     </div>
                 </div>
@@ -24,38 +34,60 @@
         </div>
         <div class="power-content">
             <div class="power-item">
-                <button class="power-item-title">
+                <button class="power-item-title" v-if="props.exp>props.min_exp && props.exp<=props.max_exp">
                     您已解锁<span style="color:#f40">{{ props.all_power }}</span>项特权 >
                 </button>
+                <button class="power-item-title" v-else>
+                    {{ props.rank }}会员尊享{{ props.all_power }}项特权 >
+                </button>
                 <div class="power-nav">
-                    <div class="power-nav-item" @click="() => {activeTab = 'tab1'}" id="tab1" style="background-color: rgb(242, 246, 255);">
+                    <div class="power-nav-item" :style="{ backgroundColor: activeTab === 'tab1' ?  randomColor5  : 'white' }" @click="activeTab = 'tab1'">
                         <div  style="color: rgb(66, 66, 66);">每日礼</div  >
                     </div>
-                    <div class="power-nav-item" @click="() => {activeTab = 'tab2'}" id="tab2">
+                    <div class="power-nav-item" :style="{ backgroundColor: activeTab === 'tab2' ? randomColor5  : 'white' }" @click="activeTab = 'tab2'">
                         <div  style="color: rgb(66, 66, 66);">成长礼</div  >
                     </div>
-                    <div class="power-nav-item" @click="() => {activeTab = 'tab3'}" id="tab3">
+                    <div class="power-nav-item" :style="{ backgroundColor: activeTab === 'tab3' ? randomColor5  : 'white' }" @click="activeTab = 'tab3'">
                         <div  style="color: rgb(66, 66, 66);">心意礼</div>
                     </div>  
                 </div>
                 <div class="power-nav-contents">
                     <div class="power-nav-content" v-if="activeTab === 'tab1'">
                             <div v-for="i in props.powericon[0].elements" :key="i.id" class="power-for">
-                                <span :class= i.icon class="iconfont"></span>
+                                <div class="iconfont" v-if="i.status === false">
+                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
+                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 `"></span>
+                                 </div>
+                                 <div class="iconfont" v-else>
+                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
+                                 </div>
                                 <span class="power-for-name">{{ i.name }}</span>
                                 <span class="power-for-desc">{{ i.desc }}</span>
                             </div>
                     </div>
                     <div class="power-nav-content" v-if="activeTab === 'tab2'" >
                             <div v-for="i in props.powericon[1].elements" :key="i.id" class="power-for">
-                                <span :class= i.icon class="iconfont"></span>
+                                <!-- <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);`"></span> -->
+                                 <div class="iconfont" v-if="i.status === false">
+                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
+                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 `"></span>
+                                 </div>
+                                 <div class="iconfont" v-else>
+                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
+                                 </div>
                                 <span class="power-for-name">{{ i.name }}</span>
                                 <span class="power-for-desc">{{ i.desc }}</span>
                             </div>
                     </div>
                     <div class="power-nav-content" v-if="activeTab === 'tab3'">
                             <div v-for="i in props.powericon[2].elements" :key="i.id" class="power-for">
-                                <span :class= i.icon class="iconfont"></span>
+                                <div class="iconfont" v-if="i.status === false">
+                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
+                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 `"></span>
+                                 </div>
+                                 <div class="iconfont" v-else>
+                                     <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
+                                 </div>
                                 <span class="power-for-name">{{ i.name }}</span>
                                 <span class="power-for-desc">{{ i.desc }}</span>
                             </div>
@@ -76,15 +108,15 @@ import { RouterLink } from 'vue-router';
 const props = defineProps({
     rank: {
         type: String,
-        default: '微雪花'
+        default: ''
     },
     exp:{
         type: Number,
-        default: 10
+        default: 0
     },
     max_exp:{
         type: Number,
-        default: 30
+        default: 0
     },
     min_exp:{
         type: Number,
@@ -92,7 +124,11 @@ const props = defineProps({
     },
     next_exp:{
         type: String,
-        default: '生日福利'
+        default: ''
+    },
+    current_exp:{
+        type: String,
+        default: ''
     },
     png:{
         type: String,
@@ -100,50 +136,31 @@ const props = defineProps({
     },
     all_power:{
         type: Number,
-        default: 6
+        default: 0
     },
     powericon:{
         type: Object,
         default:null
+    },
+    color:{
+        type:Array,
+        default:[]
     }
 });
 
 
-function updateProgressBar(value) {
-    const progressBar = document.getElementById('progress-bar');
-    progressBar.style.width = value + '%'; // 设置进度条的宽度
-}
-onMounted(() => {
-    updateProgressBar(props.exp / props.max_exp * 100);
-    console.log(props.rank);
-});
+
+
+const randomColor1 = props.color[0].code;
+const randomColor2 = props.color[1].code;
+const randomColor3 = props.color[2].code;
+const randomColor4 = props.color[3].code;
+const randomColor5 = props.color[5].code;
+
 const activeTab = ref('tab1');
-watch(activeTab, (newVal, oldVal) => {
-  if (newVal === 'tab1') {
-    const st=document.getElementById('tab1');
-    st.style.backgroundColor = 'rgb(242, 246, 255)';
-    tab2.style.backgroundColor = 'white';
-    tab3.style.backgroundColor = 'white';
-    console.log('tab1');    
-    return;
-    }
-  if (newVal === 'tab2') {
-    const st=document.getElementById('tab2');
-    st.style.backgroundColor = 'rgb(242, 246, 255)';
-    tab1.style.backgroundColor = 'white';
-    tab3.style.backgroundColor = 'white';
-    console.log('tab2');
-    return;
-  }
-  if (newVal === 'tab3') {
-    const st=document.getElementById('tab3');
-    st.style.backgroundColor = 'rgb(242, 246, 255)';
-    tab1.style.backgroundColor = 'white';
-    tab2.style.backgroundColor = 'white';
-    console.log('tab3');
-    return;
-  }
-});
+const lock =ref('icon-suo')
+const touming =ref(2)
+
 </script>
 
 <style scoped>
@@ -154,8 +171,8 @@ h4{
     margin: 10px 10px;
     border: 1px solid #e6e6e6;
     border-radius: 10px;
-    
-    background: linear-gradient(to right, rgb(87, 162, 255), rgb(50, 94, 255));
+    ;
+    /* background: linear-gradient(to right, rgb(87, 162, 255), rgb(50, 94, 255)); */
     display: flex;
     flex-direction: column;
      overflow: hidden;
@@ -168,8 +185,12 @@ h4{
 .power-exp{
     font-size: 14px;
 }
+.power-experience{
+    height: 80px;
+    /* opacity: 0.8; */
+}
 .power-left{
-    width: 60%;
+    width: 75%;
     margin: 0 20px;
     line-height: 29px;
     color: #ffffff;
@@ -203,7 +224,7 @@ h4{
     transition: width 0.5s; /* 添加过渡效果，使宽度变化平滑 */
 }
 .power-exp-text{
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 5px;
 }
 .power-item{
@@ -246,8 +267,9 @@ h4{
     margin-top: 10px;
     overflow: hidden;
     width: 100%;
-    overflow-x: auto
-    
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
 }
 .power-nav-content::-webkit-scrollbar {
     display: none;
@@ -268,6 +290,7 @@ h4{
 .iconfont{
     font-size: 30px;
     color: #749bfe;
+    position: relative;
 }
 .power-for-name{
     font-size: 12px;
