@@ -112,6 +112,9 @@ const scrollToSection = (index) => {
     display: flex;
     flex-direction: row;
     width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
 }
 .side-bar{
     width: 20%;

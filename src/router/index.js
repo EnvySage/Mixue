@@ -72,7 +72,11 @@ const router = createRouter({
       name: 'DetailsView',
       component: () => import('../layout/DetailsViewLayout.vue'),
     },
-
+    {
+      path: '/snackDetail/:id',
+      name:'snackDetail',
+      component: () => import('../components/DetailsComponents/snackDetail.vue'),
+    },
   ],
 })
 

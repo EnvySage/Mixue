@@ -46,6 +46,8 @@ watch(()=>cartlist.value = shopCar.getCart(), (newVal, oldVal) => {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 9999;
+    background-color:white ;
 }
 .order-view{
     width: 100%;
@@ -58,7 +60,6 @@ watch(()=>cartlist.value = shopCar.getCart(), (newVal, oldVal) => {
 .scroll{
     position: absolute;
     top:220px;
-    bottom: 0;
-    overflow: hidden;
+    bottom: 50px;
 }
 </style>
