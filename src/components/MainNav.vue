@@ -74,6 +74,7 @@ const isActive = (index) => {
     left: 0;
     right: 0;
     border-top: 1px solid #ccc;
+    z-index: 2;
 }
 .detail-box {
     display: flex;

@@ -9,6 +9,21 @@ const router = createRouter({
       component: () => import('../layout/MainViewLayout.vue'),
     },
     {
+      path: '/red',
+      name: 'hongbao',
+      component: () => import('../views/MainView/RedView.vue'),
+    },
+    {
+      path: '/daily',
+      name: 'daily',
+      component: () => import('../views/MainView/DailyView.vue'),
+    },
+    {
+      path: '/gift',
+      name: 'giftcard',
+      component: () => import('../views/MainView/CardView.vue'),
+    },
+    {
       path: '/Order',
       name: 'OrderView',
       component: () => import('../layout/OrderViewLayout.vue'),
@@ -32,7 +47,7 @@ const router = createRouter({
         {
           path: 'commonOrder',
           name: 'commonOrder',
-          component: ()=>import('../views/OrderView/commonOrder.vue')
+          component: () => import('../views/OrderView/commonOrder.vue')
         }
       ]
     },
@@ -45,14 +60,14 @@ const router = createRouter({
       path: '/Own',
       name: 'OwnView',
       component: () => import('../layout/OwnViewLayout.vue'),
-      
+
     },
     {
       path: '/Details/:id',
       name: 'DetailsView',
       component: () => import('../layout/DetailsViewLayout.vue'),
-    }
-    
+    },
+
   ],
 })
 
