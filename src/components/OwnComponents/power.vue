@@ -56,7 +56,7 @@
                             <div v-for="i in props.powericon[0].elements" :key="i.id" class="power-for">
                                 <div class="iconfont" v-if="i.status === false">
                                      <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
-                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 `"></span>
+                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1;font-weight: 600 `"></span>
                                  </div>
                                  <div class="iconfont" v-else>
                                      <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
@@ -70,7 +70,7 @@
                                 <!-- <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);`"></span> -->
                                  <div class="iconfont" v-if="i.status === false">
                                      <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
-                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 `"></span>
+                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 ;font-weight: 600`"></span>
                                  </div>
                                  <div class="iconfont" v-else>
                                      <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
@@ -83,7 +83,7 @@
                             <div v-for="i in props.powericon[2].elements" :key="i.id" class="power-for">
                                 <div class="iconfont" v-if="i.status === false">
                                      <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};filter: blur(${touming}px);z-index:0`"></span>
-                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 `"></span>
+                                     <span class="iconfont" :class="lock" :style="`color: ${randomColor4};position:absolute;top:0;left:0;z-index:1 ;font-weight: 600`"></span>
                                  </div>
                                  <div class="iconfont" v-else>
                                      <span :class= i.icon class="iconfont" :style="`color: ${randomColor4};`"></span>
@@ -198,8 +198,8 @@ h4{
 .power-img{
     position: relative;
     top: 0;
-    max-width: 70%;
-    margin: 0 10px;
+    width: 70%;
+    margin: 20px 10px;
     text-align: center;
 }
 .power-title{

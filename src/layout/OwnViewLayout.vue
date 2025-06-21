@@ -21,9 +21,9 @@ import json from '../../public/power.json'
 import coma from '@/components/OwnComponents/coma.vue'
 import power from '@/components/OwnComponents/power.vue'
 import img1 from '../img/own/own-rank/own1.png'
-import img2 from '../img/own/own-rank/own1.png'
-import img3 from '../img/own/own-rank/own1.png'
-import img4 from '../img/own/own-rank/own1.png'
+import img2 from '../img/own/own-rank/own2.png'
+import img3 from '../img/own/own-rank/own3.png'
+import img4 from '../img/own/own-rank/own4.png'
 const exp = ref(90);
 const imgList = [img1,img2,img3,img4]
 const jsonData = ref([]);
@@ -44,9 +44,12 @@ jsonData.value = json.power;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
      overscroll-behavior-x: contain;
+     padding: 0 auto;
 }
 .power-item-container{
     width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
 }
 .power-item::-webkit-scrollbar {
     display: none;
