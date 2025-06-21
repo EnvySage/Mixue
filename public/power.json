@@ -48,7 +48,7 @@
             "min_exp":30,
             "next_exp":"新品试饮",
             "current_exp":"生日福利",
-            "pngs":"src/img/own/own-rank/own1.png",
+            "pngs":"src/img/own/own-rank/own2.png",
             "all_power":10,
             "powericon":[
                 {"id":1,"name":"每日礼","elements":[
@@ -89,7 +89,7 @@
             "min_exp":100,
             "next_exp":"周边特价",
             "current_exp":"新品试饮",
-            "pngs":"src/img/own/own-rank/own1.png",
+            "pngs":"src/img/own/own-rank/own3.png",
             "all_power":12,
             "powericon":[
                 {"id":1,"name":"每日礼","elements":[
@@ -130,7 +130,7 @@
             "min_exp":1000,
             "next_exp":"免费一袋冰",
             "current_exp":"周边特价",
-            "pngs":"src/img/own/own-rank/own1.png",
+            "pngs":"src/img/own/own-rank/own4.png",
             "all_power":15,
             "powericon":[
                 {"id":1,"name":"每日礼","elements":[
@@ -164,6 +164,10 @@
                 {"id":6,"name":"按钮背景色","code":"#faf2e5"}
             ]
         }
-
+    ],
+    "sign":[
+        {"id":1,"name":"雪王币","num":"215","png":"src/img/own/own-sign/own1.png"},
+        {"id":2,"name":"优惠券","num":"10","png":"src/img/own/own-sign/own2.png"},
+        {"id":3,"name":"礼品卡","num":"点击查看","png":"src/img/own/own-sign/own3.png"}
     ]
 }
