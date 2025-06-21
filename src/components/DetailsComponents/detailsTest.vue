@@ -74,7 +74,7 @@
     <div class="bottom-bar">
       <div class="price-info">
         <span class="current-price">¥{{ product.price }}</span>
-        <span class="original-price">¥{{ product.price_original }}</span>
+        <span class="original-price">¥{{ product.price*1.2 }}</span>
       </div>
       <div class="quantity-selector">
         <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
@@ -169,6 +169,7 @@ const goBack = () => {
   font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
   background-color: #f7f7f7;
   min-height: 100vh;
+  margin-bottom: 100px;
 }
 
 /* 返回按钮 */
@@ -179,8 +180,11 @@ const goBack = () => {
   z-index: 10;
 }
 
-.back-icon {
-  font-size: 50px;
+.iconfont{
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  font-size: 24px;
+  padding: 10px;
 }
 
 /* 顶部图片 */
