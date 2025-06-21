@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import testDetails from "../components/DetailsComponents/detailsTest.vue";
+import testDetails from "../components/DetailsComponents/detail.vue";
 </script>
 
 <style scoped>

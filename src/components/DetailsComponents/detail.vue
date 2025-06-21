@@ -73,8 +73,8 @@
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
       <div class="price-info">
-        <span class="current-price">¥{{ product.price }}</span>
-        <span class="original-price">¥{{ product.price*1.2 }}</span>
+        <span class="current-price">¥{{ product.price*quantity }}</span>
+        <span class="original-price">¥{{ (product.price*1.2).toFixed(1) }}</span>
       </div>
       <div class="quantity-selector">
         <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
@@ -83,7 +83,7 @@
       </div>
       <div class="action-buttons">
         <button class="buy-now-btn" @click="buyNow">立即购买</button>
-        <button class="add-cart-btn" @click="addToCart">加入购物车</button>
+        <button class="add-cart-btn" @click="addCart">加入购物车</button>
       </div>
     </div>
   </div>
@@ -94,7 +94,10 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useProductStore } from "@/stores/products";
+import { useShopCar } from "@/stores/shopCar";
+
 const productStore = useProductStore();
+const shopcarStore = useShopCar();
 
 const route = useRoute();
 
@@ -127,6 +130,7 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
+
 });
 
 const toggleFavorite = () => {
@@ -149,14 +153,15 @@ const selectExtras = (option) => {
   option.selected = !option.selected;
 };
 
-const addToCart = () => {
-  if (!product.value) return;
-  console.log("商品已添加到购物车");
+const addCart = () => {
+  shopcarStore.addToCart(product.value.productId, quantity.value);
+  alert("加入购物车成功");
+  history.back();
 };
 
 const buyNow = () => {
   if (!product.value) return;
-  console.log("立即购买");
+  alert("立即购买成功");
 };
 
 const goBack = () => {
