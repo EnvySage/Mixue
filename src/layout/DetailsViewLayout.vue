@@ -1,5 +1,7 @@
 <template>
     <div>
+        
+        <h1>Details View</h1>
         <testDetails></testDetails>
     </div>
 </template>
