@@ -1,160 +1,162 @@
 <template>
-  <div class="details-page">
-    <div v-if="isLoading">加载中...</div>
-    <div v-else>
-      <!-- 返回按钮 -->
-      <div class="back-button" @click="goBack">
-        <i class="back-icon">←</i>
-      </div>
+  <div class="details-page" v-if="!loading">
+    <div class="back-button" @click="goBack">
+      <div class="iconfont icon-fanhui"></div>
+    </div>
 
-      <!-- 顶部图片 -->
-      <div class="product-image">
-        <img :src="`https://glpla.github.io/utils${currentGood.img}`" alt="产品图片">
-      </div>
+    <!-- 顶部图片 -->
+    <div class="product-image">
+      <img :src="`${product.imageUrl}`" alt="产品图片" />
+    </div>
 
-      <!-- 产品信息和收藏 -->
-      <div class="product-header">
-        <h2>{{ product.name }}</h2>
-        <div class="favorite" @click="toggleFavorite">
-          <span class="star-icon" :class="{ 'filled': isFavorite }">★</span>
-          <span>收藏口味{{ route.params.id }}</span>
-        </div>
+    <div class="product-header">
+      <h2>{{ product.name }}</h2>
+      <div class="favorite" @click="toggleFavorite">
+        <span class="star-icon" :class="{ filled: isFavorite }">★</span>
+        <span>收藏口味</span>
       </div>
+    </div>
 
-      <!-- 规格选择 -->
-      <div class="specifications">
-        <div class="spec-group" v-for="spec in currentGood.specification" :key="spec.id">
-          <div class="spec-label">{{ spec.label }}</div>
-          <div class="spec-options">
-             <button
-              v-for="option in temperature"
-              :key="option.name"
-              :class="['spec-option', { 'active': option.default }]"
-              @click="selectTemperature(option)"
-            >
-              {{ option.name }}
-            </button>
+     <!-- 温度选择 -->
+    <div class="spec-group">
+      <div class="spec-label">温度</div>
+      <div class="spec-options">
+        <button
+          v-for="option in temperature"
+          :key="option.name"
+          :class="['spec-option', { active: option.default }]"
+          @click="selectTemperature(option)"
+        >
+          {{ option.name }}
+        </button>
+      </div>
+    </div>
+
+    <!-- 甜度选择 -->
+    <div class="spec-group">
+      <div class="spec-label">糖度</div>
+      <div class="spec-options">
+        <button
+          v-for="option in sugar"
+          :key="option.name"
+          :class="['spec-option', { active: option.default }]"
+          @click="selectSugar(option)"
+        >
+          {{ option.name }}
+        </button>
+      </div>
+    </div>
+
+    <!-- 加料选择 -->
+    <div class="spec-group">
+      <div class="spec-label">加料</div>
+      <div class="extras-list">
+        <div
+          v-for="option in extras"
+          :key="option.name"
+          class="extra-option"
+        >
+          <span>{{ option.name }}（¥{{ option.price }}）</span>
+          <div class="add-extra-btn" @click="selectExtras(option)">
+            <i class="plus-icon">+</i>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- 商品详情 -->
-      <div class="product-details">
-        <h3>商品详情</h3>
-        <div class="detail-content" v-html="currentGood.desc"></div>
+    <!-- 商品详情 -->
+    <div class="product-details">
+      <h3>商品详情</h3>
+      <div class="detail-content">{{ product.description }}</div>
+    </div>
+
+    <!-- 底部操作栏 -->
+    <div class="bottom-bar">
+      <div class="price-info">
+        <span class="current-price">¥{{ product.price }}</span>
+        <span class="original-price">¥{{ product.price_original }}</span>
       </div>
-
-      <!-- 底部操作栏 -->
-      <div class="bottom-bar">
-        <div class="price-info">
-          <span class="current-price">¥{{ currentGood.price }}</span>
-          <span class="original-price">¥{{ currentGood.price_original }}</span>
-        </div>
-        <div class="quantity-selector">
-          <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
-          <span class="quantity">{{ quantity }}</span>
-          <button class="quantity-btn" @click="quantity++">+</button>
-        </div>
-        <div class="action-buttons">
-          <button class="buy-now-btn" @click="buyNow">立即购买</button>
-          <button class="add-cart-btn" @click="addToCart">加入购物车</button>
-        </div>
+      <div class="quantity-selector">
+        <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
+        <span class="quantity">{{ quantity }}</span>
+        <button class="quantity-btn" @click="quantity++">+</button>
+      </div>
+      <div class="action-buttons">
+        <button class="buy-now-btn" @click="buyNow">立即购买</button>
+        <button class="add-cart-btn" @click="addToCart">加入购物车</button>
       </div>
     </div>
   </div>
+  <div v-else>加载中...</div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import {useRoute} from 'vue-router';
-import { useProductStore } from '@/stores/products';
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { useProductStore } from "@/stores/products";
 const productStore = useProductStore();
 
 const route = useRoute();
-const currentGood = ref(null);
+
 const isFavorite = ref(false);
 const quantity = ref(1);
-const isLoading = ref(true);
+const loading = ref(true);
 
-// 直接定义要展示的商品数据
-const currentGoodData = {
-  id: 0,
-  title: "美式咖啡(升级版)",
-  desc: "纯正美式，浓郁香气<br>主辅料：鲜萃咖啡液<br><br>【杯型容量】中杯 505mL<br>【杯型容量】即杯容量，为预估出餐量参考数据，非实际含量。<br>为避免饮品过满无法封杯或撒漏，可能存在不完全满杯情况，实际含量请以门店出餐为准。<br>注：杯型容量数据基于相关国家标准存在合理偏差。",
-  img: "/coffee/coffee0.jpg",
-  price_original: 5,
-  price: 5,
-  specification: [
-    {
-      id: 101,
-      label: "温度",
-      name: "ther",
-      options: [
-        { id: 0, label: "正常冰", value: "正常冰", sel: true },
-        { id: 1, label: "少冰", value: "少冰", sel: false },
-        { id: 2, label: "热", value: "热", sel: false }
-      ]
-    },
-    {
-      id: 102,
-      label: "糖度",
-      name: "sugar",
-      options: [
-        { id: 0, label: "正常糖", value: "正常糖", sel: true },
-        { id: 1, label: "七分糖", value: "七分糖", sel: false },
-        { id: 2, label: "五分糖", value: "五分糖", sel: false },
-        { id: 3, label: "三分糖", value: "三分糖", sel: false },
-        { id: 4, label: "无糖", value: "无糖", sel: false }
-      ]
-    }
-  ],
-};
 const id = route.params.id;
 const temperature = ref([]);
+const sugar = ref([]);
+const extras = ref([]);
 
-const product =ref();
-console.log(product)
+const product = ref(null);
+
 onMounted(async () => {
-  // 获取商品详情
-  await productStore.getById(id);   
-  product.value=productStore.product
- temperature.value = product.value.options.temperature
-console.log(product.value.options.temperature)
-// console.log(temperature)
-
-  isLoading.value = true;
   try {
-    currentGood.value = currentGoodData;
-    if (!currentGood.value) {
-      console.error('商品数据不存在');
+    // 获取商品详情
+    await productStore.getById(id);
+    product.value = productStore.product;
+    console.log(product.value); // 添加调试信息
+    if (product.value) {
+      temperature.value = product.value.options.temperature;
+      sugar.value = product.value.options.sugar;
+      extras.value = product.value.options.extras;
+    } else {
+      console.error("未能获取到商品数据");
     }
   } catch (error) {
-    console.error('获取商品详情失败:', error);
+    console.error("获取商品详情时出错", error);
   } finally {
-    isLoading.value = false;
+    loading.value = false;
   }
 });
-
-
-
 
 const toggleFavorite = () => {
   isFavorite.value = !isFavorite.value;
 };
 
-const selectSpec = (specName, option) => {
-  const spec = currentGood.value.specification.find(spec => spec.name === specName);
-  spec.options.forEach(opt => { opt.sel = opt.id === option.id; });
+const selectTemperature = (option) => {
+  temperature.value.forEach((opt) => {
+    opt.default = opt.name === option.name;
+  });
+};
+
+const selectSugar = (option) => {
+  sugar.value.forEach((opt) => {
+    opt.default = opt.name === option.name;
+  });
+};
+
+const selectExtras = (option) => {
+  option.selected = !option.selected;
 };
 
 const addToCart = () => {
-  if (!currentGood.value) return;
-  console.log('商品已添加到购物车');
+  if (!product.value) return;
+  console.log("商品已添加到购物车");
 };
 
 const buyNow = () => {
-  if (!currentGood.value) return;
-  console.log('立即购买');
+  if (!product.value) return;
+  console.log("立即购买");
 };
 
 const goBack = () => {
@@ -164,7 +166,7 @@ const goBack = () => {
 
 <style scoped>
 .details-page {
-  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
   background-color: #f7f7f7;
   min-height: 100vh;
 }
@@ -178,8 +180,7 @@ const goBack = () => {
 }
 
 .back-icon {
-  font-size: 20px;
-  color: #333;
+  font-size: 50px;
 }
 
 /* 顶部图片 */
@@ -195,14 +196,20 @@ const goBack = () => {
   height: 100%;
   object-fit: cover;
 }
+.details-page {
+  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
 
-/* 产品标题和收藏 */
+/* 页面头部 */
 .product-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  justify-content: space-between;
+  padding: 10px 15px;
   background-color: #fff;
+  border-bottom: 1px solid #eee;
 }
 
 .product-header h2 {
@@ -216,26 +223,20 @@ const goBack = () => {
   align-items: center;
   color: #999;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .star-icon {
+  font-size: 18px;
+  color: #333;
   margin-right: 5px;
-  color: #ddd;
-}
-
-.star-icon.filled {
-  color: gold;
 }
 
 /* 规格选择 */
-.specifications {
+.spec-group {
   padding: 15px;
   background-color: #fff;
   margin: 10px 0;
-}
-
-.spec-group {
-  margin-bottom: 15px;
 }
 
 .spec-label {
@@ -245,22 +246,56 @@ const goBack = () => {
 
 .spec-options {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
 .spec-option {
   padding: 6px 15px;
-  border: 1px solid #ddd;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: #f0f0f0;
   font-size: 14px;
   color: #333;
+  border: 1px solid #ddd;
 }
 
 .spec-option.active {
-  border-color: #ff4d4f;
-  color: #ff4d4f;
+  background-color: #ff4d4f;
+  color: white;
+}
+
+/* 加料选择 */
+.extras-list {
+  margin-top: 10px;
+}
+
+.extra-option {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.add-extra-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ff4d4f;
+  color: white;
+  font-size: 18px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.plus-icon {
+  font-size: 18px;
+  color: white;
 }
 
 /* 商品详情 */
@@ -280,10 +315,6 @@ const goBack = () => {
 .detail-content {
   line-height: 1.6;
   color: #333;
-}
-
-.detail-content p {
-  margin: 10px 0;
 }
 
 /* 底部操作栏 */
@@ -349,27 +380,19 @@ const goBack = () => {
   margin-left: auto;
 }
 
-.buy-now-btn, .add-cart-btn {
+.buy-now-btn,
+.add-cart-btn {
   padding: 8px 20px;
   border: none;
   border-radius: 20px;
   font-size: 14px;
   cursor: pointer;
+  background-color: #f5f5f5;
+  color: #333;
 }
 
 .buy-now-btn {
   background-color: #ff4d4f;
   color: white;
 }
-
-.add-cart-btn {
-  background-color: #f5f5f5;
-  color: #333;
-}
 </style>
-
-
-
-
-
-

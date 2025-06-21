@@ -9,12 +9,14 @@
             <router-view class="order-view"></router-view>
         </div>
     </div>
+    <MainNav></MainNav>
 </template>
 
 <script setup>
 import breadTitle from '@/components/OrderComponents/breadTitle.vue';
 import TopBar from '@/components/OrderComponents/topBar.vue';
 import destinationCard from '@/components/OrderComponents/destinationCard.vue';
+import MainNav from '../components/MainNav.vue'
 </script>
 
 <style scoped>

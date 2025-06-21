@@ -13,6 +13,7 @@
            
         
     </div>
+      <MainNav />
 </template>
 
 <script setup>
@@ -24,6 +25,7 @@ import img1 from '../img/own/own-rank/own1.png'
 import img2 from '../img/own/own-rank/own1.png'
 import img3 from '../img/own/own-rank/own1.png'
 import img4 from '../img/own/own-rank/own1.png'
+import MainNav from '@/components/MainNav.vue'
 const exp = ref(90);
 const imgList = [img1,img2,img3,img4]
 const jsonData = ref([]);
@@ -33,6 +35,7 @@ jsonData.value = json.power;
 </script>
 
 <style scoped>
+@import url('//at.alicdn.com/t/c/font_4955194_4nvmwfz3mnn.css');
 .power-item{
     display: flex;
     flex-direction: row;

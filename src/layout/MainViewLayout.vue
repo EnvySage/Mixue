@@ -3,11 +3,13 @@
         <vip></vip>
         <homefct></homefct>
     </div>
+    <MainNav></MainNav>
 </template>
 
 <script setup>
 import vip from '@/components/MainComponents/VipCard.vue'
 import homefct from '@/components/MainComponents/Homefunction.vue'
+import MainNav from '@/components/MainNav.vue';
 </script>
 
 <style scoped>
