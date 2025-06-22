@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="container">
+        
     <div class="iconfont" v-if="i.status === false">
       <span
         :class="i.icon"
@@ -26,6 +27,7 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
+
 const props = defineProps({
     i: {
         type: Object,
@@ -49,9 +51,15 @@ const props = defineProps({
         default: "",
     },
 });
+
 </script>
 
 <style scoped>
+.container{
+    display: flex;
+    flex-direction: column;
+    
+}
 .iconfont{
     /* font-size: 30px; */
     color: #749bfe;

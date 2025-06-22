@@ -1,6 +1,6 @@
 <template>
     <div class="power" id="power" :style="{background: `linear-gradient(to right, ${randomColor1}, ${randomColor2})`}">
-        <div class="power-header">
+        <RouterLink to="/power" class="power-header">
             <div class="power-left" >
                 <div class="power-title">
                     <h4>{{ props.rank }}</h4>
@@ -10,15 +10,15 @@
             <div class="power-right">
                 <img :src=props.png alt="" class="power-img">
             </div>
-        </div>
+        </RouterLink>
         <div class="power-content">
             <div class="power-item">
-                <button class="power-item-title" v-if="props.exp>props.min_exp && props.exp<=props.max_exp">
+                <RouterLink to="/power" class="power-item-title" v-if="props.exp>props.min_exp && props.exp<=props.max_exp">
                     您已解锁<span style="color:#f40">{{ props.all_power }}</span>项特权 >
-                </button>
-                <button class="power-item-title" v-else>
+                </RouterLink>
+                <RouterLink to="/power" class="power-item-title" v-else>
                     {{ props.rank }}会员尊享{{ props.all_power }}项特权 >
-                </button>
+                </RouterLink>
                 <div class="power-nav">
                     <div class="power-nav-item" :style="{ backgroundColor: activeTab === 'tab1' ?  randomColor5  : 'white' }" @click="activeTab = 'tab1'">
                         <div  style="color: rgb(66, 66, 66);">每日礼</div  >

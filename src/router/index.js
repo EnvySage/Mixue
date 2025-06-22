@@ -98,6 +98,21 @@ const router = createRouter({
       component:()=>import('../views/MainView/rankView.vue')
     },
     {
+      path: '/money',
+      name: 'moneyView',
+      component: () => import('../views/MainView/moneyView.vue'),
+    },
+    {
+      path: '/vouchers',
+      name: 'vouchers',
+      component: () => import('../views/MainView/vouchers.vue'),
+    },
+    {
+      path:'/giftcard',
+      name:'giftcard',
+      component:()=>import('../views/MainView/giftcardView.vue')
+    },
+    {
       path: '/Details/:id',
       name: 'DetailsView',
       component: () => import('../layout/DetailsViewLayout.vue'),

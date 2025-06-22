@@ -16,7 +16,7 @@
 
     <!-- 日期和时间 -->
     <div class="date-time-container">
-      <span class="order-date">{{ order.date }}</span>
+      <span class="order-date">{{ order.items[0].id }}</span>
       <span class="preparation-time">{{ order.time }}</span>
     </div>
 
@@ -30,6 +30,7 @@
   </div>
 </template>
 
+
 <script setup>
 import { defineProps, defineEmits } from 'vue';
 
@@ -37,22 +38,15 @@ const props = defineProps({
   order: {
     type: Object,
     required: true,
-    default: () => ({
-      date: '2025-04-09',
-      time: '16:02:15',
-      status: '已完成',
-      images: ['https://example.com/image1.jpg'],
-      quantity: 1,
-      totalPrice: 4,
-    }),
   },
 });
 
 const emit = defineEmits(['order-clicked']);
 
 const handleOrderClick = () => {
-  emit('order-clicked', props.order);
+  emit('order-clicked', props.order); // 使用 order.id 作为参数
 };
+console.log('接收到的订单数据：', props.order);
 </script>
 
 <style scoped>

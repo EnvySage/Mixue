@@ -166,9 +166,9 @@
         }
     ],
     "sign":[
-        {"id":1,"name":"雪王币","num":"215","png":"src/img/own/own-sign/own1.png"},
-        {"id":2,"name":"优惠券","num":"10","png":"src/img/own/own-sign/own2.png"},
-        {"id":3,"name":"礼品卡","num":"点击查看","png":"src/img/own/own-sign/own3.png"}
+        {"id":1,"name":"雪王币","num":215,"png":"src/img/own/own-sign/own1.png","route":"/money"},
+        {"id":2,"name":"优惠券","num":"10","png":"src/img/own/own-sign/own2.png","route":"/vouchers"},
+        {"id":3,"name":"礼品卡","num":"点击查看","png":"src/img/own/own-sign/own3.png","route":"/giftcard"}
     ],
     "moreserver":[
         {"id":1,"name":"兑换中心","icon":"icon-caidan"},
