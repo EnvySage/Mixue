@@ -1,16 +1,21 @@
 <template>
     <div>
-        <ListTest></ListTest>
+        <breadTitle class="bread-title-container"></breadTitle>
+        <RouterView></RouterView>
+
     </div>
     <MainNav></MainNav>
 </template>
 
 <script setup>
-import ListTest from '@/components/ListComponents/listTest.vue';
+import Listall from '@/components/ListComponents/listall.vue';
 import MainNav from '../components/MainNav.vue'
+ import breadTitle from '@/components/ListComponents/breadTitle.vue';
 
 </script>
 
 <style scoped>
-
+*{
+    background-color: beige;
+}
 </style>

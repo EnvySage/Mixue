@@ -1,9 +1,12 @@
 <template>
+<div class="listhistory">
+    lis
+</div>
 
 </template>
 
 <script setup>
-import breadTitle from './breadTitle.vue';
+        
 </script>
 
 <style  scoped>

@@ -59,6 +59,26 @@ const router = createRouter({
       name: 'ListView',
       component: () => import('../layout/ListViewLayout.vue'),
       meta: { id: 2 },
+      redirect:'/List/listall',
+      children:[
+        {
+          path:'listall',
+          name:'listall',
+          component:()=> import('../components/ListComponents/listall.vue'),
+        }, 
+        {
+          path:'listhistory',
+          name:'listhistory',
+          component:()=> import('../components/ListComponents/listhistory.vue'),
+        },   
+        {
+          path:'listchargeback',
+          name:'listchargeback',
+          component:()=> import('../components/ListComponents/listchargeback.vue'),
+         
+        },  
+      ]
+      
     },
     {
       path: '/Own',
