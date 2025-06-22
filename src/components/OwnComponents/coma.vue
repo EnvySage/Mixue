@@ -30,7 +30,7 @@
     justify-content: space-between;
     align-items: center;
     width: auto;
-    margin: 20px 10px;
+    margin: 0 10px;
     
     flex-direction: row;
 }
@@ -38,9 +38,9 @@
     display: inline-block;
     width: 50px;
     height: 50px;
-    background-image: url('https://img.icons8.com/color/48/000000/user-male.png');
+    background-image: url('src/img/蜜雪冰城.png');
     border-radius: 50%;
-    background-color: rgb(214, 214, 214);
+    background-color: #fff7fa;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

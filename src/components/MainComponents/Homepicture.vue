@@ -3,10 +3,10 @@ import { ref, onMounted, onUnmounted } from 'vue';
  
 const indImg = ref(0);
 const images = ref([
-  'https://tse1-mm.cn.bing.net/th/id/OIP-C.6gTO7-DbAbrAapcdcbjlHAHaFW?w=228&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
-  'https://tse3-mm.cn.bing.net/th/id/OIP-C.kBFe_bzrddAuR9oNX7zwKAHaDt?w=318&h=174&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
-  'https://tse3-mm.cn.bing.net/th/id/OIP-C.aZRs4lmRaqzCq0h2mR_YMQHaE8?w=296&h=197&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
-  'https://tse1-mm.cn.bing.net/th/id/OIP-C.d-bi48oMOSJAh8n2EZ6F2AHaEK?w=288&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+  '/src/img/main/swipe1.png',
+  '/src/img/main/swipe2.png',
+  '/src/img/main/swipe3.png',
+  '/src/img/main/swipe4.png',
 ]);
  
 let timer = null;

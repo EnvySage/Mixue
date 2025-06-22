@@ -64,7 +64,7 @@ const togglePrivileges = () => {
           <span class="close-btn" @click="togglePrivileges">×</span>
         </div>
         <div class="modal-body">
-          <p class="privilege-tip">您有9项权益，开启提醒不错过</p>
+          <p class="privilege-tip">您有*项权益，开启提醒不错过</p>
           
           <div class="privilege-section">
             <h3>每日礼</h3>

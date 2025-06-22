@@ -93,7 +93,7 @@ const isActive = (index) => {
     left: 0;
     right: 0;
     border-top: 1px solid #ccc;
-    z-index: 99;
+    z-index: 9999;
 }
 .detail-box {
     display: flex;
