@@ -10,7 +10,7 @@
         </div> 
         <div class="sign-item">
             <div v-for="(i,index) in signData" :key="i.id" class="sign-item-container">
-                <sign :name="i.name" :num="i.num" :img="signImgList[i.id-1]" :id="index">
+                <sign :name="i.name" :num="i.num" :img="signImgList[i.id-1]" :route="i.route" :id="index">
                 </sign>
             </div>
         </div>
@@ -73,7 +73,8 @@ watch(exp, (newVal) => {
     const index = calculateScrollIndex();
     scrollToIndex(index);
 });
-
+// scroll.scrollToIndex = scrollToIndex;
+// scroll.calculateScrollIndex = calculateScrollIndex;
 onMounted(() => {
     const index = calculateScrollIndex();
     const elementList = document.getElementById(index);

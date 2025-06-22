@@ -1,6 +1,6 @@
 <template>
     <div  class="own-signs">
-        <div class="sign-container">
+        <RouterLink :to="$props.route" class="sign-container">
             <div class="sign-left">
                 <div class="sign-name">
                     {{ props.name }}
@@ -14,7 +14,7 @@
                     <img :src="props.img" alt="">
                 </div>
             </div>
-        </div>
+        </RouterLink>
     </div>
 </template>
 
@@ -31,6 +31,10 @@ const props = defineProps({
         default: ''
     },
     img: {
+        type: String,
+        default: ''
+    },
+    route:{
         type: String,
         default: ''
     }
