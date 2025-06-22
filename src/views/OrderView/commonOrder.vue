@@ -1,160 +1,248 @@
 <template>
-     <div class="container">
-    <!-- 顶部导航栏 -->
-    <div class="header">
-      <div class="header-left">
+  <div class="container">
+    
+    
+    
+    <div class="current-order">
+      <div class="order-header">
         <h2>再来一单</h2>
-        <span class="order-source">自提 蜜雪冰城（新华学院店内店）</span>
+        <span>2/10</span>
       </div>
-      <div class="header-right">
-        <span>1/10</span>
-        <span>自动</span>
-      </div>
-    </div>
-
-    <!-- 当前商品信息 -->
-    <div class="selected-product">
-      <img src="https://via.placeholder.com/50" alt="商品图标" class="product-icon">
-      <div class="product-info">
-        <h3 class="product-name">新鲜冰淇淋(黑芝麻脆筒)</h3>
-      </div>
-      <div class="product-quantity">
-        <span>共2件</span>
+      <div class="horizontal-scroll">
+        <div class="order-item">
+          <div class="order-item-header">自提 蜜雪冰城（新华学院校内店）</div>
+          <div class="order-item-content">
+            <div class="order-item-image"></div>
+            <div class="order-item-info">
+              <div class="order-item-name">桑葚莓莓(升级版)</div>
+              <div class="order-item-note">少冰/不额外加糖</div>
+            </div>
+          </div>
+          <div class="order-item-actions">
+            <div class="count">x1</div>
+          </div>
+          <div class="order-actions">
+        <div class="total-items">共1件</div>
         <div class="add-button">+</div>
       </div>
-    </div>
+        </div>
 
-    <!-- 推荐商品区域 -->
-    <div class="recommended-products">
-      <h3>可能喜欢</h3>
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="https://via.placeholder.com/300x360" alt="冰鲜柠檬水">
-          <div class="product-info">
-            <span class="product-name">冰鲜柠檬水</span>
-            <span class="product-desc">大片柠檬看得见，现切现捣超新鲜</span>
+         <div class="order-item">
+          <div class="order-item-header">自提 蜜雪冰城（新华学院校内店）</div>
+          <div class="order-item-content">
+            <div class="order-item-image"></div>
+            <div class="order-item-info">
+              <div class="order-item-name">桑葚莓莓(升级版)</div>
+              <div class="order-item-note">少冰/不额外加糖</div>
+            </div>
           </div>
-          <div class="price">¥4 起</div>
-          <div class="add-button">+</div>
+          <div class="order-item-actions">
+            <div class="count">x1</div>
+          </div>
+          <div class="order-actions">
+        <div class="total-items">共1件</div>
+        <div class="add-button">+</div>
+      </div>
+        </div>
+        
+        <!-- 可以添加更多订单项 -->
+      </div>
+      
+    </div>
+    
+    <div class="recommended">
+      <h2 class="section-title">可能喜欢</h2>
+      <div class="products-grid">
+        <!-- 复制粘贴 -->
+        <div class="product-card">
+          <div class="product-image"></div>
+          <div class="product-info">
+            <div class="product-name">草莓啵啵</div>
+            <div class="product-tags">
+              <span class="product-tag">清甜爽口</span>
+              <span class="product-tag">人气明星</span>
+            </div>
+            <div class="product-description">草莓啵啵，甜蜜啵一个</div>
+            <div class="product-price">
+              <div class="price">¥9 <span class="price-start">起</span></div>
+              <div class="add-button">+</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">
+            <div class="sold-out">本店暂时售罄</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">柠檬乌龙茶</div>
+            <div class="product-description">鲜柠配乌龙，柠檬茶新宠</div>
+            <div class="product-price">
+              <div class="price">¥5 <span class="price-start">起</span></div>
+            </div>
+          </div>
         </div>
         <div class="product-card">
-          <img src="https://via-placeholder.com/300x360" alt="棒打鲜橙">
+          <div class="product-image"></div>
           <div class="product-info">
-            <span class="product-name">棒打鲜橙</span>
-            <span class="product-desc">大片橙子真给力，一杯满满有维C</span>
+            <div class="product-name">草莓啵啵</div>
+            <div class="product-tags">
+              <span class="product-tag">清甜爽口</span>
+              <span class="product-tag">人气明星</span>
+            </div>
+            <div class="product-description">草莓啵啵，甜蜜啵一个</div>
+            <div class="product-price">
+              <div class="price">¥9 <span class="price-start">起</span></div>
+              <div class="add-button">+</div>
+            </div>
           </div>
-          <div class="price">¥6 起</div>
-          <div class="add-button">+</div>
         </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/300x360" alt="蜜桃乌龙">
-          <div class="product-info">
-            <span class="product-name">蜜桃乌龙</span>
-            <span class="product-desc">蜜桃香气浓郁，回味甘甜</span>
-          </div>
-          <div class="price">¥8 起</div>
-          <div class="add-button">+</div>
-        </div>
-        <div class="product-card">
-          <img src="https://via.placeholder.com/300x360" alt="葡萄酷爽">
-          <div class="product-info">
-            <span class="product-name">葡萄酷爽</span>
-            <span class="product-desc">葡萄果肉多汁，酸甜可口</span>
-          </div>
-          <div class="price">¥9 起</div>
-          <div class="add-button">+</div>
-        </div>
+        <!-- 可以添加更多推荐产品 -->
       </div>
     </div>
   </div>
 </template>
-
-<script setup>
-
-</script>
-
-<style scoped>
-/* 全局样式 */
-body {
-  font-family: 'Source Sans Pro', Arial, sans-serif;
-  background-color: #f2f2f2;
+<style >
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .container {
-  max-width: 400px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding-bottom: 70px; /* 为底部导航留出空间 */
 }
 
-/* 顶部导航栏 */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-}
-
-.header h2 {
-  font-size: 20px;
-  margin: 0;
-}
-
-.order-source {
-  font-size: 14px;
-  color: #666;
-  margin-left: 10px;
-}
-
-.header-right span {
-  font-size: 14px;
-  color: #666;
-}
-
-.header-right span + span {
-  margin-left: 10px;
-}
-
-/* 当前商品信息 */
-.selected-product {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fff;
+  background-color: #fff;
   padding: 15px;
-  border-radius: 10px;
+  border-bottom: 1px solid #eee;
 }
 
-.product-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.product-info {
-  flex: 1;
-  margin-left: 10px;
-}
-
-.product-name {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0;
-}
-
-.product-quantity {
+.store-info {
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.product-quantity span {
+.store-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.distance {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.coupon {
+  color: #ff4d4f;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.view-more {
+  text-align: right;
+  color: #999;
+  font-size: 14px;
+}
+
+.menu-tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 0 15px;
+}
+
+.menu-tab {
+  padding: 15px 0;
+  margin: 0 10px;
+  font-size: 16px;
+  position: relative;
+  color: #666;
+}
+
+.menu-tab.active {
+  color: #333;
+  font-weight: bold;
+}
+
+.menu-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ff4d4f;
+}
+
+.menu-tab i {
+  color: #ff4d4f;
+  margin-right: 5px;
+}
+
+.current-order {
+  margin: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.order-detail {
+  display: flex;
+  padding: 15px;
+}
+
+.order-image {
+  width: 80px;
+  height: 80px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.order-info {
+  flex: 1;
+}
+
+.order-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.order-note {
+  font-size: 14px;
+  color: #999;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.total-items {
   font-size: 14px;
   color: #666;
 }
@@ -162,47 +250,57 @@ body {
 .add-button {
   width: 30px;
   height: 30px;
-  background-color: #ff6f61;
+  background-color: #ff4d4f;
   color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.recommended {
+  margin: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.section-title {
   font-size: 18px;
   font-weight: bold;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
+  margin-bottom: 15px;
 }
 
-/* 推荐商品区域 */
-.recommended-products {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-.recommended-products h3 {
-  font-size: 18px;
-  margin: 0 0 10px;
-  color: #333;
-}
-
-/* 商品卡片 */
-.product-grid {
+.products-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 
 .product-card {
-  background: #fff;
   border-radius: 10px;
   overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.product-image {
+  height: 150px;
+  background-color: #f0f0f0;
   position: relative;
 }
 
-.product-card img {
-  width: 100%;
-  height: auto;
+.sold-out {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 12px;
 }
 
 .product-info {
@@ -211,38 +309,134 @@ body {
 
 .product-name {
   font-size: 16px;
-  font-weight: 500;
-  margin: 0 0 5px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.product-desc {
-  font-size: 14px;
-  color: #666;
-  margin: 0;
+.product-tags {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.product-tag {
+  font-size: 12px;
+  color: #ff4d4f;
+  margin-right: 8px;
+}
+
+.product-description {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .price {
-  font-size: 16px;
-  font-weight: 500;
-  margin-top: 5px;
-}
-
-/* 加入按钮 */
-.add-button {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: #ff6f61;
-  color: #fff;
   font-size: 18px;
   font-weight: bold;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
+  color: #ff4d4f;
 }
 
+.price-start {
+  font-size: 12px;
+  color: #999;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.nav-item.active {
+  color: #ff4d4f;
+}
+
+.nav-icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.horizontal-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.order-item {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-right: 15px;
+  padding: 15px;
+  white-space: normal;
+}
+
+.order-item-header {
+  font-size: 14px;
+  color: #ff4d4f;
+  margin-bottom: 10px;
+}
+
+.order-item-content {
+  display: flex;
+}
+
+.order-item-image {
+  width: 60px;
+  height: 60px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.order-item-info {
+  flex: 1;
+}
+
+.order-item-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.order-item-note {
+  font-size: 12px;
+  color: #999;
+}
+
+.order-item-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.count {
+  font-size: 14px;
+  color: #666;
+}
 </style>
