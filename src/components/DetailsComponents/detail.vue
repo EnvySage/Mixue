@@ -17,7 +17,7 @@
       </div>
     </div>
 
-     <!-- 温度选择 -->
+    <!-- 温度选择 -->
     <div class="spec-group">
       <div class="spec-label">温度</div>
       <div class="spec-options">
@@ -73,8 +73,8 @@
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
       <div class="price-info">
-        <span class="current-price">¥{{ product.price*quantity }}</span>
-        <span class="original-price">¥{{ (product.price*1.2).toFixed(1) }}</span>
+        <span class="current-price">¥{{ product.price * quantity }}</span>
+        <span class="original-price">¥{{ (product.price * 1.2).toFixed(1) }}</span>
       </div>
       <div class="quantity-selector">
         <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
@@ -95,9 +95,11 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useProductStore } from "@/stores/products";
 import { useShopCar } from "@/stores/shopCar";
+import { useSnackStore } from "@/stores/snack"; // 添加 snackStore 导入
 
 const productStore = useProductStore();
 const shopcarStore = useShopCar();
+const snackStore = useSnackStore(); // 添加 snackStore
 
 const route = useRoute();
 
@@ -111,6 +113,7 @@ const sugar = ref([]);
 const extras = ref([]);
 
 const product = ref(null);
+const snack = ref(null); // 添加 snack 变量
 
 onMounted(async () => {
   try {
@@ -118,6 +121,7 @@ onMounted(async () => {
     await productStore.getById(id);
     product.value = productStore.product;
     console.log(product.value); // 添加调试信息
+
     if (product.value) {
       temperature.value = product.value.options.temperature;
       sugar.value = product.value.options.sugar;
@@ -130,7 +134,6 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
-
 });
 
 const toggleFavorite = () => {
@@ -154,14 +157,21 @@ const selectExtras = (option) => {
 };
 
 const addCart = () => {
-  shopcarStore.addToCart(product.value.productId, quantity.value);
+  if (product.value) {
+    shopcarStore.addToCart(product.value.productId, quantity.value, 'product');
+  }
   alert("加入购物车成功");
   history.back();
 };
 
 const buyNow = () => {
-  if (!product.value) return;
-  alert("立即购买成功");
+  if (product.value) {
+    alert("立即购买成功");
+    // 处理立即购买逻辑
+  } else if (snack.value) {
+    alert("立即购买成功");
+    // 处理立即购买逻辑
+  }
 };
 
 const goBack = () => {
@@ -185,7 +195,7 @@ const goBack = () => {
   z-index: 10;
 }
 
-.iconfont{
+.iconfont {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 50%;
   font-size: 24px;
@@ -204,11 +214,6 @@ const goBack = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.details-page {
-  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
-  background-color: #f7f7f7;
-  min-height: 100vh;
 }
 
 /* 页面头部 */

@@ -1,5 +1,5 @@
 <template>
-    <div class="mask"  @click="closeMask" v-if="showMask">
+    <div class="mask" @click="closeMask" v-if="showMask">
         <div class="cont" @click.stop>
              <div class="cont-header">
                 <div class="select-all">
@@ -12,19 +12,19 @@
                 </div>
             </div>
             <div class="productList" style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
-                <div class="product" v-for="item in productList" :key="item.id">
-                    <input type="checkbox"  v-model="item.selected" @change="updateSelectAll">
-                    <img :src="productStore.products[item.id-1].imageUrl" style="width: 70px;height: 70px; border-radius: 50%;">
+                <div class="product" v-for="item in cartItems" :key="item.id">
+                    <input type="checkbox" v-model="item.selected" @change="updateSelectAll"/>
+                    <img :src="item.type === 'product' ? productStore.products[item.id-1].imageUrl : snackStore.snacks[item.id-101].imageUrl" style="width: 70px;height: 70px; border-radius: 50%;">
                     <div class="product-info" style="width: 45%;">
-                        <div class="product-name" style="">{{ productStore.products[item.id-1].name }}</div>
-                        <div class="product-desc" style="font-size: 10px; width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ productStore.products[item.id].description }}</div>
-                        <div class="product-price">¥{{ productStore.products[item.id-1].price }}</div>
+                        <div class="product-name">{{ item.type === 'product' ? productStore.products[item.id-1].name : snackStore.snacks[item.id-101].name }}</div>
+                        <div class="product-desc" style="font-size: 10px; width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ item.type === 'product' ? productStore.products[item.id-1].description : snackStore.snacks[item.id-101].description }}</div>
+                        <div class="product-price">¥{{ item.type === 'product' ? productStore.products[item.id-1].price : snackStore.snacks[item.id-101].price }}</div>
                     </div>
                     <div class="price">
                       <div class="nums">
-                        <button @click="item.num > 1 ? item.num-- : ''" style="background-color: transparent;">-</button>
+                        <button @click="decrementQuantity(item)" style="background-color: transparent;">-</button>
                         <span class="num">{{ item.num }}</span>
-                        <button @click="item.num++" style="background-color: #f40; color: white; ">+</button>
+                        <button @click="incrementQuantity(item)" style="background-color: #f40; color: white;">+</button>
                       </div>
                     </div>
                 </div>
@@ -44,73 +44,88 @@
 </template>
 
 <script setup>
-import { ref,onMounted,computed } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useProductStore } from '@/stores/products';
 import { useShopCar } from '@/stores/shopCar';
 import { useOrderStore } from '@/stores/order';
+import { useSnackStore } from '@/stores/snack';
+
 const orderStore = useOrderStore();
 const shopCar = useShopCar();
 const productStore = useProductStore();
-const productList = ref([]);
+const snackStore = useSnackStore();
+
+const cartItems = ref([]); // 合并商品和小吃的购物车列表
 
 const showMask = ref(false);
+
 const closeMask = () => {
     showMask.value = false;
 };
+
 const CarDetail = () => {
     showMask.value = true;
-    productList.value = shopCar.getCart();
-    getdata();
-    console.log(productList.value);
+    cartItems.value = shopCar.getCartItems(); // 获取合并后的购物车列表
+    console.log(cartItems.value);
 };
+
 const selectAll = ref(true);
-onMounted(async() => {
+onMounted(async () => {
     await productStore.getAll();
-    productList.value = shopCar.getCart();
-    getdata();
+    await snackStore.getAll();
+    cartItems.value = shopCar.getCartItems(); // 获取合并后的购物车列表
+    toggleSelectAll();
 });
-const getdata = () => {
-  productList.value = shopCar.getCart().map(item => {
-    return { ...item, selected: true }; 
-  });
-};
-const quan = computed(() => {
-    let total = 0;
-    for (let i = 0; i < productList.value.length; i++) {
-      if(productList.value[i].selected){
-        total += productList.value[i].num;
-      }
-    }
-    return total;
-});
-const sum = computed(() => {
-    let total = 0;
-    for (let i = 0; i < productList.value.length; i++) {
-      if(productList.value[i].selected){
-        total += productList.value[i].num * productStore.products[productList.value[i].id-1].price;
-      }
-    }
-    return total;
-});
+
+
 const toggleSelectAll = () => {
-  productList.value.forEach(item => {
-    item.selected = selectAll.value;
-  });
+    cartItems.value.forEach(item => {
+        item.selected = selectAll.value;
+    });
+    selectAll.value = cartItems.value.every(item => item.selected);
 };
 
 const updateSelectAll = () => {
-  selectAll.value = productList.value.every(item => item.selected);
+    selectAll.value = cartItems.value.every(item => item.selected);
 };
+
+const quan = computed(() => {
+    return cartItems.value.reduce((total, item) => {
+        return item.selected ? total + item.num : total;
+    }, 0);
+});
+
+const sum = computed(() => {
+    return cartItems.value.reduce((total, item) => {
+        return item.selected ? total + item.num * (item.type === 'product' ? productStore.products[item.id-1].price : snackStore.snacks[item.id-101].price) : total;
+    }, 0);
+});
+
 const FinishShop = () => {
-  alert("结算成功");
-  orderStore.createOrder(productList.value.filter(item => item.selected));
-  shopCar.clearCart();
-  productList.value = [];
-  getdata();
+    if (cartItems.value.length === 0) {
+        snackStore.showSnack("购物车为空，请选择商品");
+        return;
+    }
+    alert("结算成功");
+    orderStore.createOrder(cartItems.value.filter(item => item.selected));
+    shopCar.clearCart();
+    cartItems.value = [];
 };
+
 const clearCar = () => {
     shopCar.clearCart();
-    productList.value = [];
+    cartItems.value = [];
+};
+
+const decrementQuantity = (item) => {
+    if (item.num > 1) {
+        item.num--;
+    } else {
+        shopCar.removeCartItem(item.id, item.type);
+    }
+};
+const incrementQuantity = (item) => {
+    item.num++;
 };
 </script>
 
@@ -175,7 +190,6 @@ const clearCar = () => {
     width: 100%;
     height: 100%;
     z-index: 997;
-    
 }
 .cont{
     position: absolute;

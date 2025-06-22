@@ -6,27 +6,28 @@
 
     <!-- 顶部图片 -->
     <div class="product-image">
-      <img :src="`${snacks[id-1].imageUrl}`" alt="产品图片" />
+      <img :src="`${snack.imageUrl}`" alt="产品图片" />
     </div>
 
     <div class="product-header">
-      <h2>{{ snacks[id-1].name }}</h2>
+      <h2>{{ snack.name }}</h2>
       <div class="favorite" @click="toggleFavorite">
         <span class="star-icon" :class="{ filled: isFavorite }">★</span>
         <span>收藏口味</span>
       </div>
     </div>
+
     <!-- 商品详情 -->
     <div class="product-details">
       <h3>商品详情</h3>
-      <div class="detail-content">{{ snacks[id-1].description }}</div>
+      <div class="detail-content">{{ snack.description }}</div>
     </div>
 
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
       <div class="price-info">
-        <span class="current-price">¥{{ snacks[id-1].price*quantity }}</span>
-        <span class="original-price">¥{{ (snacks[id-1].price*1.2).toFixed(1) }}</span>
+        <span class="current-price">¥{{ snack.price * quantity }}</span>
+        <span class="original-price">¥{{ (snack.price * 1.2).toFixed(1) }}</span>
       </div>
       <div class="quantity-selector">
         <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
@@ -59,25 +60,22 @@ const loading = ref(true);
 
 const id = route.params.id;
 
-const snacks = ref(null);
+const snack = ref(null);
 
 onMounted(async () => {
   try {
-    // 获取商品详情
+    // 获取小吃详情
     await snackStore.getById(id);
-    snacks.value = snackStore.snacks;
-    console.log(snacks.value); // 添加调试信息
-    if (snacks.value) {
-      
-    } else {
-      console.error("未能获取到商品数据");
+    snack.value = snackStore.snack;
+    console.log(snack.value); // 添加调试信息
+    if (!snack.value) {
+      console.error("未能获取到小吃数据");
     }
   } catch (error) {
-    console.error("获取商品详情时出错", error);
+    console.error("获取小吃详情时出错", error);
   } finally {
     loading.value = false;
   }
-
 });
 
 const toggleFavorite = () => {
@@ -85,14 +83,18 @@ const toggleFavorite = () => {
 };
 
 const addCart = () => {
-  shopcarStore.addToCart(snacks.value[id-1].productId, quantity.value);
+  if (snack.value) {
+    shopcarStore.addToCart(snack.value.productId, quantity.value, 'snack');
+  }
   alert("加入购物车成功");
   history.back();
 };
 
 const buyNow = () => {
-  if (!snacks.value) return;
-  alert("立即购买成功");
+  if (snack.value) {
+    alert("立即购买成功");
+    // 处理立即购买逻辑
+  }
 };
 
 const goBack = () => {
@@ -116,7 +118,7 @@ const goBack = () => {
   z-index: 10;
 }
 
-.iconfont{
+.iconfont {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 50%;
   font-size: 24px;
@@ -135,11 +137,6 @@ const goBack = () => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.details-page {
-  font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
-  background-color: #f7f7f7;
-  min-height: 100vh;
 }
 
 /* 页面头部 */
@@ -170,72 +167,6 @@ const goBack = () => {
   font-size: 18px;
   color: #333;
   margin-right: 5px;
-}
-
-/* 规格选择 */
-.spec-group {
-  padding: 15px;
-  background-color: #fff;
-  margin: 10px 0;
-}
-
-.spec-label {
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-
-.spec-options {
-  display: flex;
-  gap: 10px;
-}
-
-.spec-option {
-  padding: 6px 15px;
-  border-radius: 20px;
-  background-color: #f0f0f0;
-  font-size: 14px;
-  color: #333;
-  border: 1px solid #ddd;
-}
-
-.spec-option.active {
-  background-color: #ff4d4f;
-  color: white;
-}
-
-/* 加料选择 */
-.extras-list {
-  margin-top: 10px;
-}
-
-.extra-option {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
-  font-size: 14px;
-}
-
-.add-extra-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #ff4d4f;
-  color: white;
-  font-size: 18px;
-  margin-left: auto;
-  cursor: pointer;
-}
-
-.plus-icon {
-  font-size: 18px;
-  color: white;
 }
 
 /* 商品详情 */

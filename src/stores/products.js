@@ -1,5 +1,6 @@
 import { ref} from 'vue'
 import { defineStore } from 'pinia'
+import { useShopCar } from './shopCar';
 
 export const useProductStore = defineStore('products', () => {
   const products = ref([])
@@ -19,6 +20,9 @@ export const useProductStore = defineStore('products', () => {
     console.log('getById',res);
     return res
  }
-
-  return { product,products,getAll,getById }
+  const addProductToCart = (id, num) => {
+    const shopCar = useShopCar();
+    shopCar.addToCart(id, num, 'product'); // 传递 type 属性为 'product'
+  };
+  return { product,products,getAll,getById,addProductToCart }
 })

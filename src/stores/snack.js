@@ -1,5 +1,6 @@
 import { ref} from 'vue'
 import { defineStore } from 'pinia'
+import { useShopCar } from './shopCar';
 
 export const useSnackStore = defineStore('snacks', () => {
   const snacks = ref([])
@@ -7,8 +8,8 @@ export const useSnackStore = defineStore('snacks', () => {
   const getAll=async()=>{
     let res =await fetch('/snack.json')
     let data =await res.json()
-    snacks.value=data.productList
-    return data.productList
+    snacks.value=data.snackList
+    return data.snackList
   }
   const getById=async(ID)=>{
    if(!snacks.value.length){
@@ -19,6 +20,9 @@ export const useSnackStore = defineStore('snacks', () => {
     console.log('getById',res);
     return res
  }
-
-  return { snack,snacks,getAll,getById }
+  const addSnackToCart = (id, num) => {
+    const shopCar = useShopCar();
+    shopCar.addToCart(id, num, 'snack'); // 传递 type 属性为 'snack'
+  };
+  return { snack,snacks,getAll,getById,addSnackToCart }
 })

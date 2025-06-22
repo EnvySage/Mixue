@@ -9,7 +9,7 @@
             <router-view class="order-view"></router-view>
         </div>
     </div>
-    <ShopCar  v-if="ShowCar"></ShopCar>
+    <ShopCar v-if="ShowCar"></ShopCar>
     <MainNav></MainNav>
 </template>
 
@@ -17,49 +17,63 @@
 import breadTitle from '@/components/OrderComponents/breadTitle.vue';
 import TopBar from '@/components/OrderComponents/topBar.vue';
 import destinationCard from '@/components/OrderComponents/destinationCard.vue';
-import MainNav from '../components/MainNav.vue'
+import MainNav from '../components/MainNav.vue';
 import ShopCar from '@/components/ShopCarComponent.vue';
-import { ref,onMounted,watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useShopCar } from '@/stores/shopCar';
+import { useProductStore } from '@/stores/products';
+import { useSnackStore } from '@/stores/snack';
+
 const shopCar = useShopCar();
+const productStore = useProductStore();
+const snackStore = useSnackStore();
+
 const ShowCar = ref(false);
- const cartlist = ref([]);
- onMounted(() => {
-     cartlist.value = shopCar.getCart();
-     if (cartlist.value.length > 0){
+const cartlist = ref([]);
+
+onMounted(async () => {
+    await productStore.getAll();
+    await snackStore.getAll();
+    cartlist.value = shopCar.getCartItems(); // 使用 getCartItems 方法获取合并后的购物车列表
+    if (cartlist.value.length > 0) {
         ShowCar.value = true;
-     }
- });
-watch(()=>cartlist.value = shopCar.getCart(), (newVal, oldVal) => {
-    if (newVal.length > 0 && ShowCar.value === false){
-        ShowCar.value = true;
-    }else if (newVal.length === 0 && ShowCar.value === true){
-        ShowCar.value = false;
     }
 });
 
+watch(
+    () => shopCar.getCartItems(), // 监听购物车的变化
+    (newVal) => {
+        cartlist.value = newVal;
+        if (newVal.length > 0 && ShowCar.value === false) {
+            ShowCar.value = true;
+        } else if (newVal.length === 0 && ShowCar.value === true) {
+            ShowCar.value = false;
+        }
+    },
+    { deep: true }
+);
 </script>
 
 <style scoped>
-.header{
+.header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
-    background-color:white ;
+    background-color: white;
 }
-.order-view{
+.order-view {
     width: 100%;
     height: 100%;
 }
-.scroll-container{
+.scroll-container {
     height: 100vh;
     overflow: hidden;
 }
-.scroll{
+.scroll {
     position: absolute;
-    top:220px;
+    top: 220px;
     bottom: 50px;
 }
 </style>
