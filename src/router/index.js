@@ -98,6 +98,12 @@ const router = createRouter({
       component:()=>import('../views/MainView/rankView.vue')
     },
     {
+      path: '/money',
+      name: 'moneyView',
+      component: () => import('../views/MainView/moneyView.vue'),
+    
+    },
+    {
       path: '/Details/:id',
       name: 'DetailsView',
       component: () => import('../layout/DetailsViewLayout.vue'),
