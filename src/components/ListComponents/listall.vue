@@ -10,36 +10,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useOrderStore } from '@/stores/order.js'; // 导入 Pinia store
 import list from '@/components/ListComponents/list.vue';
+import axios from 'axios';
 
 const router = useRouter();
+const orderStore = useOrderStore(); // 使用 Pinia store
+const orders = ref([]);
 
-const orders = ref([
-  {
-    date: '2025-04-09',
-    time: '16:02:15',
-    status: '已完成',
-    images: ['https://example.com/image1.jpg'],
-    quantity: 1,
-    totalPrice: 4,
-  },
-  {
-    date: '2025-03-15',
-    time: '20:53:31',
-    status: '已完成',
-    images: ['https://example.com/image2.jpg'],
-    quantity: 1,
-    totalPrice: 6,
-  },
-]);
+
+onMounted(async() => {
+    orders.value = orderStore.getAllOrders();
+    console.log('获取到的订单数据：', orders.value); // 添加日志
+    console.log('获取到的订单数据：', orders.value[0].id); // 添加日志
+});
 
 const navigateToDetail = (order) => {
-  router.push({ name: 'listdetail', params: { orderId: order.date } });
+  router.push({ name: 'listdetail', params: { orderId: order.id } }); // 使用 order.id 作为参数
 };
 </script>
 
 <style scoped>
-
+/* 你的样式 */
 </style>
