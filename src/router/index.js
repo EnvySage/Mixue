@@ -82,6 +82,11 @@ const router = createRouter({
       name:'snackDetail',
       component: () => import('../components/DetailsComponents/snackDetail.vue'),
     },
+    {
+      path: '/doubleDetail/:id',
+      name: 'doubleDetail',
+      component: () => import('../components/DetailsComponents/doubleDetail.vue'),
+    },
   ],
 })
 
