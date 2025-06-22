@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="list-view-layout">
         <breadTitle class="bread-title-container"></breadTitle>
         <RouterView></RouterView>
 
@@ -15,7 +15,9 @@ import MainNav from '../components/MainNav.vue'
 </script>
 
 <style scoped>
-*{
-    background-color: beige;
+.list-view-layout {
+    width: 100%;
+    height: 100vh;
+    background-color: lightgray;
 }
 </style>

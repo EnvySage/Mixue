@@ -20,7 +20,7 @@ import { ref } from 'vue';
 const titleList = [
   { name: '全部', url: 'listall' },
     { name: '历史', url: 'listhistory' },
-    { name: '退单', url: 'listchargeback' },
+    
     
 ];
 
@@ -34,12 +34,13 @@ const updateSelectedTitle = (index) => {
 <style scoped>
 .bread-title-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 40px;
+    height: 80px;
     background-color: #fff;
     padding: 0 20px;
     border-bottom: 1px solid #eee;
+    
 }
 
 .bread-title {
@@ -48,6 +49,7 @@ const updateSelectedTitle = (index) => {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    margin: 50px;
 }
 
 
@@ -72,3 +74,4 @@ const updateSelectedTitle = (index) => {
     background-color: transparent; 
 }
 </style>
+

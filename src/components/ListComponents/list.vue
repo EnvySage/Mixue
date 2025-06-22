@@ -1,5 +1,5 @@
 <template>
-  <div class="order-item">
+    <div class="order-item" @click="handleOrderClick">
     <!-- 自提和店铺名称 -->
     <div class="pickup-info">
       <span class="pickup">自提</span>
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
   order: {
@@ -47,6 +47,12 @@ const props = defineProps({
     }),
   },
 });
+
+const emit = defineEmits(['order-clicked']);
+
+const handleOrderClick = () => {
+  emit('order-clicked', props.order);
+};
 </script>
 
 <style scoped>
@@ -57,7 +63,7 @@ const props = defineProps({
   padding: 16px;
   position: relative; /* 使按钮相对订单项定位 */
   border-bottom: 1px solid #e0e0e0;
-  margin: 50px 0; /* 订单之间间距 */
+  margin: 50px 0px; /* 订单之间间距 */
   border-radius: 10px; /* 订单框圆角 */
 }
 

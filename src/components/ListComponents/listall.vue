@@ -4,13 +4,17 @@
       v-for="(order, index) in orders"
       :key="index"
       :order="order"
+      @order-clicked="navigateToDetail(order)"
     />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import list from '@/components/ListComponents/list.vue';
+
+const router = useRouter();
 
 const orders = ref([
   {
@@ -30,7 +34,12 @@ const orders = ref([
     totalPrice: 6,
   },
 ]);
+
+const navigateToDetail = (order) => {
+  router.push({ name: 'listdetail', params: { orderId: order.date } });
+};
 </script>
+
 <style scoped>
 
 </style>
