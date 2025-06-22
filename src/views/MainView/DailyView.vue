@@ -1,5 +1,6 @@
 <template>
     <div class="game-machine">
+        <button @click="goBack" class="back-button">&lt;</button>
         <h1 class="title">海底游戏机</h1>
         <div class="coin-display">
             <span class="coin-icon">🍦</span>我的雪王币: {{ coins }}
@@ -31,7 +32,12 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+const goBack = () => {
+    router.back();
+};
 const coins = ref(215);
 const prizes = [
     '雪王流光杯',
@@ -100,6 +106,18 @@ const startDrawing = () => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .prize-frame {
