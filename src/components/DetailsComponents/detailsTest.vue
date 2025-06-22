@@ -113,13 +113,14 @@ const id = route.params.id;
 const temperature = ref([]);
 
 const product =ref();
-console.log(product)
+//console.log(product)
 onMounted(async () => {
   // 获取商品详情
   await productStore.getById(id);   
   product.value=productStore.product
+  console.log('p:',product.value);
  temperature.value = product.value.options.temperature
-console.log(product.value.options.temperature)
+console.log('t',product.value.options.temperature)
 // console.log(temperature)
 
   isLoading.value = true;
