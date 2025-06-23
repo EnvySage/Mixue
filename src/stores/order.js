@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useOrderStore = defineStore('orders', () => {
-  const orders = ref([]);
+  const orders = ref([{id: 1, items: [{id: 1, num: 1, type: 'product'}]}]);
   const currentOrderId = ref(0); // 初始化订单ID计数器
 
   const currentOrder = ref({ id: null, items: [] });
