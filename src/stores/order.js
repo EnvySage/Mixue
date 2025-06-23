@@ -5,7 +5,7 @@ import { useProductStore } from '../stores/products';
 import { useSnackStore } from '../stores/snack';
 
 export const useOrderStore = defineStore('orders', () => {
-  const orders = ref([{id: 1, items: [{id: 1, num: 1, type: 'product'}]}]);
+  const orders = ref([]);
   const currentOrderId = ref(0); // 初始化订单ID计数器
 
   const currentOrder = ref({ id: null, items: [] });

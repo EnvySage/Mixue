@@ -21,7 +21,7 @@
 
     <!-- 商品价格和数量 -->
     <div class="order-summary">
-      <span class="total-price">共{{ quantity() }}件 ¥{{ price() }}</span>
+      <span class="total-price">共{{ quantity() }}件 ¥{{ props.totalPrice}}</span>
     </div>
 
     <!-- 操作按钮 -->
@@ -41,8 +41,12 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+totalPrice:{
+  type:Number,
+  required:true,
+}
 });
-
+console.log(props.totalPrice)
 const emit = defineEmits(['order-clicked']);
 const router = useRouter();
 const productStore = useProductStore();
@@ -50,7 +54,7 @@ const snackStore = useSnackStore();
 const shopCar = useShopCar();
 
 const handleOrderClick=()=>{
-  router.push({ name: 'listdetail', params: { orderId: props.order.id } });
+  router.push({ name: 'listdetail', params: { id: props.order.id } });
 };
 
 

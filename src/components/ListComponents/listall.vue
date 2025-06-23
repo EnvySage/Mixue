@@ -4,6 +4,7 @@
       v-for="(order, index) in orders"
       :key="index"
       :order="order"
+      :totalPrice="orderStore.calculateTotalPrice(order.items)"
       @order-clicked="navigateToDetail(order)"
     />
   </div>

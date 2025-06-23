@@ -81,7 +81,7 @@ const router = createRouter({
     },
     
     {
-      path: '/listdetail',
+      path: '/listdetail/:id',
       name: 'listdetail',
       component: () => import('../components/ListComponents/listdetail.vue'),
     },
