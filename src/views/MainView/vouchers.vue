@@ -1,5 +1,8 @@
 <template>
   <div class="voucher-container">
+    <div class="back-button" @click="goBack">
+      <div class="iconfont icon-fanhui"></div>
+    </div>
     <div class="status-tabs">
       <div 
         v-for="(tab, index) in tabs" 
@@ -170,6 +173,9 @@ const createSnowflakes = () => {
 onMounted(() => {
   createSnowflakes()
 })
+const goBack = () => {
+  history.back();
+};
 </script>
 
 <style scoped>
@@ -179,7 +185,19 @@ onMounted(() => {
   box-sizing: border-box;
   font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
 }
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
 
+.iconfont {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  font-size: 18px;
+  padding: 10px;
+}
 .voucher-container {
   background: linear-gradient(135deg, #fff8f0, #fff0e6);
   color: #333;
@@ -187,7 +205,7 @@ onMounted(() => {
   margin-top:20px;
   display: flex;
   flex-direction: column;
-  
+  padding-top:30px ;
 
   background: white;
   border-radius: 20px;

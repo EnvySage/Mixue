@@ -58,7 +58,7 @@ const props = defineProps({
 .container{
     display: flex;
     flex-direction: column;
-    
+    max-width: 100px;
 }
 .iconfont{
     /* font-size: 30px; */

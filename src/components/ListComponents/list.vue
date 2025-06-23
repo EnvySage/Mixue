@@ -1,5 +1,5 @@
 <template>
-    <div class="order-item" @click="handleOrderClick">
+  <div class="order-item" @click="handleOrderClick">
     <!-- 自提和店铺名称 -->
     <div class="pickup-info">
       <span class="pickup">自提</span>
@@ -11,18 +11,17 @@
 
     <!-- 商品图片 -->
     <div class="product-images">
-      <img v-for="img in order.images" :src="img" :alt="`商品图片`" />
+      <!-- <img  v-for="img in productDetails.products" :alt="`商品图片`" /> -->
     </div>
 
     <!-- 日期和时间 -->
     <div class="date-time-container">
-      <span class="order-date">{{ order.items[0].id }}</span>
-      <span class="preparation-time">{{ order.time }}</span>
+      <span class="preparation-time">{{ formattedTime }}</span>
     </div>
 
     <!-- 商品价格和数量 -->
     <div class="order-summary">
-      <span class="total-price">共{{ order.quantity }}件 ¥{{ order.totalPrice }}</span>
+      <span class="total-price">共{{ quantity() }}件 ¥{{ price() }}</span>
     </div>
 
     <!-- 操作按钮 -->
@@ -30,9 +29,12 @@
   </div>
 </template>
 
-
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useProductStore } from '@/stores/products';
+import { useSnackStore } from '@/stores/snack';
+import { useShopCar } from '@/stores/shopCar';
 
 const props = defineProps({
   order: {
@@ -42,17 +44,78 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['order-clicked']);
+const router = useRouter();
+const productStore = useProductStore();
+const snackStore = useSnackStore();
+const shopCar = useShopCar();
 
-const handleOrderClick = () => {
-  emit('order-clicked', props.order); // 使用 order.id 作为参数
+const handleOrderClick=()=>{
+  router.push({ name: 'listdetail', params: { orderId: props.order.id } });
 };
+
+
+onMounted(async () => {
+ await productStore.getAll();
+ await snackStore.getAll();
+})
+// 动态设置时间
+const formattedTime = ref(new Date().toLocaleString()); // 使用当前时间
+const productDetails=ref();
+const snackDetails=ref();
+const shopDetails=ref();
+
+
+const quantity= ()=>{
+  let totalNum = 0;
+  props.order.items.forEach(item => {
+    totalNum += item.num;
+  });
+    return totalNum;
+};
+
+const price=()=>{
+  let totalPrice = 0;
+  props.order.items.forEach(async (item) => {
+    if (item.type === 'product') {
+      await productStore.getById(item.id).then(res => {
+        totalPrice += res.price * item.num;
+      })
+    } else if (item.type ==='snack') {
+      await snackStore.getById(item.id).then(res => {
+        totalPrice += res.price * item.num;
+      })
+    }
+  });
+  return totalPrice;
+};
+
+
+// const handleOrderClick = async () => {
+//   if (props.order.type === 'product') {
+//     productDetails = await productStore.getById(props.order.id);
+//   } else if (props.order.type === 'snack') {
+//     productDetails = await snackStore.getById(props.order.id);
+//   }
+
+//   if (productDetails) {
+//     // 更新订单数据
+//     props.order.productDetails = productDetails;
+//     console.log('更新后的订单数据：', props.order);
+//   }
+
+//   emit('order-clicked', props.order); // 使用 order.id 作为参数
+
+//   // 跳转到详细页面
+//   router.push({ name: 'listdetail', params: { orderId: props.order.id } });
+// };
+
 console.log('接收到的订单数据：', props.order);
 </script>
 
 <style scoped>
 /* 订单框样式 */
 .order-item {
-    height: 150px;
+  height: 150px;
   background-color: #fff;
   padding: 16px;
   position: relative; /* 使按钮相对订单项定位 */

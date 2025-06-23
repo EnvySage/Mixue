@@ -1,5 +1,8 @@
 <template>
   <div style=" background: linear-gradient( to bottom, rgb(219, 231, 255), rgb(255, 255, 255));height: 100%;" class="own-rank-view">
+    <div class="back-button" @click="goBack">
+      <div class="iconfont icon-fanhui"></div>
+    </div>
     <div class="own-header">
       <span class="header"> </span>
       <div class="header-phone">
@@ -87,21 +90,35 @@ watch(exp, (newVal) => {
 // scroll.calculateScrollIndex = calculateScrollIndex;
 onMounted(() => {
     const index = calculateScrollIndex();
-    console.log(index);
     const elementList = document.getElementById(index);
     elementList.scrollIntoView({ behavior: 'smooth', block: 'center' });
 });
+const goBack = () => {
+  history.back();
+};
 </script>
 
 <style scoped>
 @import url('//at.alicdn.com/t/c/font_4955194_amn6y8jn15m.css');
+.back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
 
+.iconfont {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  font-size: 24px;
+  padding: 10px;
+}
 .own-header {
   display: flex;
   align-items: center;
   width: auto;
   padding: 20px 10px;
-
+  padding-top: 70px ;
   flex-direction: row;
 }
 .header {
@@ -121,7 +138,7 @@ onMounted(() => {
   align-items: center;
   flex-wrap: nowrap;
     justify-content: space-between;
-    margin-top: 10px;
+    margin: 10px 0;
     width: 100%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -175,12 +192,11 @@ onMounted(() => {
     
 }
 .power-for{
-    margin-top: 5px;
-    margin-right:  40px;
+    margin-top: 10px;
+    min-width: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    
     text-align: center;
     cursor: pointer;
     transition: color 0.3s ease;
@@ -200,7 +216,7 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   position: relative;
-  justify-content: space-around;
+  
   align-content: center;
   left: -30px;
   padding: 5px;
@@ -215,5 +231,8 @@ onMounted(() => {
   font-size: 18px;
   padding: 0 auto;
   margin: 10px auto;
+}
+.power-header::-webkit-scrollbar {
+    display: none;
 }
 </style>

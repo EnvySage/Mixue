@@ -207,11 +207,11 @@ h4{
 
 .power-for{
     margin-top: 5px;
-    margin-right:  40px;
+    
+    min-width: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    
     text-align: center;
     cursor: pointer;
     transition: color 0.3s ease;

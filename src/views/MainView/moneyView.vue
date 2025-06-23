@@ -23,20 +23,25 @@
         <!-- 1元饮品券 -->
         <div class="card">
           <div class="card-left">
+            <img src="../../img//main/vouchers1.png" alt="">
             <div class="card-title" >1元饮品券</div>
             <div class="card-price">388 雪王币</div>
+            <button class="exchange-btn" :class="{'completed': complete1}" :disabled="complete1" @click="dec1(388)">
+            {{ complete1 ? '去使用' : '去兑换' }}</button>
+            <RouterLink to="/order" class="exchange-btn" :class="{'completed': !complete1}" >去下单</RouterLink>
           </div>
-          <button class="exchange-btn" @click="dec(388)">去兑换</button>
-        </div>
-
-        <!-- 88折饮品券 -->
-        <div class="card">
           <div class="card-left">
+            <img src="../../img//main/vouchers2.png" alt="">
             <div class="card-title">88折饮品券</div>
             <div class="card-price">688 雪王币</div>
+            <button class="exchange-btn" :class="{'completed': complete2}" :disabled="complete2" @click="dec2(688)">
+            {{ complete2 ? '去使用' : '去兑换' }}</button>
+            <RouterLink to="/order" class="exchange-btn" :class="{'completed': !complete2}" >去下单</RouterLink>
           </div>
-          <button class="exchange-btn" @click="dec(688)">去兑换</button>
+          
         </div>
+
+        
 
         <div class="tasks-section">
           <div class="section-title">
@@ -51,8 +56,10 @@
                 +5雪王币
               </div>
             </div>
-            <div class="task-action">
-              <button class="task-btn pulse" @click="add(5)">去签到</button>
+            <div class="task-action" >
+              <button class="task-btn pulse" :class="{'completed': complete}" @click="add(5)" :disabled="complete">
+                {{ complete ? '已完成' : '去签到' }}
+              </button>
             </div>
           </div>
 
@@ -65,7 +72,7 @@
               </div>
             </div>
             <div class="task-action">
-              <RouterLink :to="'/order'" class="task-btn pulse" @click="add(10)">去下单</RouterLink>
+              <RouterLink :to="'/order'" class="task-btn pulse"  >去下单</RouterLink>
             </div>
           </div>
         </div>
@@ -97,25 +104,42 @@
 <script setup>
 // 不需要响应式数据，纯静态页面
 import { ref } from 'vue';
+import axios from 'axios';
 import json from '../../../public/power.json';
-
-
+const complete1 = ref(false);
+const complete = ref(false);
+const complete2 = ref(false);
 const sign =ref();
 sign.value = json.sign;
 const money = ref();
 money.value = sign.value[0].num;
-function dec(num) {
+function dec1(num) {
     // 这里是模拟减少雪王币的逻辑
     if (money.value < num) {
         alert('雪王币不足');
+
         return;
     }
+    alert('兑换成功');
     money.value -= num;
+    complete1.value = true;
+}
+function dec2(num) {
+    // 这里是模拟减少雪王币的逻辑
+    if (money.value < num) {
+        alert('雪王币不足');
+
+        return;
+    }
+    alert('兑换成功');
+    money.value -= num;
+    complete2.value = true;
 }
 function add(num) {
     // 这里是模拟增加雪王币的逻辑
-    money.value += num;
-    
+    money.value += num;    
+    alert('签到成功');
+    complete.value = true;
 }
 
 
@@ -210,12 +234,17 @@ function add(num) {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  
 }
 
 .card-left {
   line-height: 1.4;
+  text-align: center;
 }
-
+.card-left img {
+  width: 165px;
+  border-radius: 10px;
+}
 .card-title {
   font-size: 16px;
   font-weight: 500;
@@ -226,9 +255,11 @@ function add(num) {
   font-size: 14px;
   color: #e70012;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .exchange-btn {
+  
   background: linear-gradient(135deg, #ea424f, #e70012);
   color: white;
   border: none;
@@ -244,7 +275,7 @@ function add(num) {
       border-radius: 16px;
       padding: 20px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
+      margin-bottom: 2px;
     }
     
     .section-title {
@@ -321,5 +352,8 @@ function add(num) {
       box-shadow: none;
       cursor: default;
     }
-    
+    .exchange-btn.completed {
+      display: none;
+      margin: 10px;
+    }
 </style>
