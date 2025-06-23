@@ -95,7 +95,8 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useProductStore } from "@/stores/products";
 import { useShopCar } from "@/stores/shopCar";
-import { useSnackStore } from "@/stores/snack"; // 添加 snackStore 导入
+import { useSnackStore } from "@/stores/snack";
+import { useOrderStore } from "@/stores/order"; // 添加 orderStore 导入
 
 const productStore = useProductStore();
 const shopcarStore = useShopCar();
@@ -183,13 +184,33 @@ const addCart = async () => {
   history.back();
 };
 
-const buyNow = () => {
+const buyNow = async () => {
   if (product.value) {
-    alert("立即购买成功");
-    // 处理立即购买逻辑
-  } else if (snack.value) {
-    alert("立即购买成功");
-    // 处理立即购买逻辑
+    // 创建订单项
+    const fullProduct = await productStore.getById(product.value.productId);
+    
+    const selectedTemperature = temperature.value.find(t => t.default);
+    const selectedSugar = sugar.value.find(s => s.default);
+    const selectedExtras = extras.value.filter(e => e.selected);
+    
+    const orderItem = {
+      id: fullProduct.productId,
+      name: fullProduct.name,
+      imgUrl: fullProduct.imageUrl,
+      type: 'product',
+      num: quantity.value,
+      selectedTemperature: selectedTemperature?.name || '',
+      selectedSugar: selectedSugar?.name || '',
+      selectedExtras: selectedExtras.map(e => e.name),
+      price: fullProduct.price * quantity.value
+    };
+
+    // 创建订单
+    const orderStore = useOrderStore();
+    const order = await orderStore.createOrder([orderItem]);
+    
+    // 跳转到订单确认页
+    history.back();
   }
 };
 

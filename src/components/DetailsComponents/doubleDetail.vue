@@ -48,6 +48,7 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useProductStore } from "@/stores/products";
 import { useShopCar } from "@/stores/shopCar";
+import { useOrderStore } from "@/stores/order"; // 添加 orderStore 导入
 
 const productStore = useProductStore();
 const shopcarStore = useShopCar();
@@ -101,10 +102,26 @@ const addCart = async () => {
   history.back();
 };
 
-const buyNow = () => {
+const buyNow = async () => {
   if (double.value) {
-    alert("立即购买成功");
-    // 处理立即购买逻辑
+    // 创建订单项
+    const fullProduct = await productStore.getById(double.value.productId);
+    
+    const orderItem = {
+      id: fullProduct.productId,
+      name: fullProduct.name,
+      imgUrl: fullProduct.imageUrl,
+      type: 'product',
+      num: quantity.value,
+      price: fullProduct.price * quantity.value
+    };
+
+    // 创建订单
+    const orderStore = useOrderStore();
+    const order = await orderStore.createOrder([orderItem]);
+    
+    // 跳转到订单确认页
+    history.back();
   }
 };
 
