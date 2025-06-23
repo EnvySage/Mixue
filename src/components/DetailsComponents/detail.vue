@@ -73,8 +73,8 @@
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
       <div class="price-info">
-        <span class="current-price">¥{{ product.price * quantity }}</span>
-        <span class="original-price">¥{{ (product.price * 1.2).toFixed(1) }}</span>
+        <span class="current-price">¥{{ product.price }}</span>
+        <span class="original-price">¥{{ (product.price / quantity * 1.2).toFixed(1) }}</span>
       </div>
       <div class="quantity-selector">
         <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
@@ -156,9 +156,28 @@ const selectExtras = (option) => {
   option.selected = !option.selected;
 };
 
-const addCart = () => {
+const addCart = async () => {
   if (product.value) {
-    shopcarStore.addToCart(product.value.productId, quantity.value, 'product');
+    // 确保获取最新商品数据
+    const fullProduct = await productStore.getById(product.value.productId);
+    
+    const selectedTemperature = temperature.value.find(t => t.default);
+    const selectedSugar = sugar.value.find(s => s.default);
+    const selectedExtras = extras.value.filter(e => e.selected);
+    
+    const cartItem = {
+      id: fullProduct.productId,
+      name: fullProduct.name,
+      imgUrl: fullProduct.imageUrl,
+      type: 'product',
+      num: quantity.value,
+      selectedTemperature: selectedTemperature?.name || '',
+      selectedSugar: selectedSugar?.name || '',
+      selectedExtras: selectedExtras.map(e => e.name),
+      price: fullProduct.price * quantity.value
+    };
+    
+    shopcarStore.addToCart(cartItem);
   }
   alert("加入购物车成功");
   history.back();

@@ -82,9 +82,20 @@ const toggleFavorite = () => {
   isFavorite.value = !isFavorite.value;
 };
 
-const addCart = () => {
+const addCart = async () => {
   if (double.value) {
-    shopcarStore.addToCart(double.value.productId, quantity.value, 'product');
+    // 确保获取最新商品数据
+    const fullProduct = await productStore.getById(double.value.productId);
+    
+    const cartItem = {
+      ...fullProduct,
+      id: fullProduct.productId,
+      type: 'product',
+      num: quantity.value,
+      price: fullProduct.price * quantity.value
+    };
+    
+    shopcarStore.addToCart(cartItem);
   }
   alert("加入购物车成功");
   history.back();

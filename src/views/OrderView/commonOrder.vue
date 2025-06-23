@@ -6,16 +6,18 @@
     <div class="current-order">
       <div class="order-header">
         <h2>再来一单</h2>
-        <span>2/10</span>
+        <!-- <span>2/10</span> -->
       </div>
       <div class="horizontal-scroll">
-        <div class="order-item">
+        <div class="order-item"  @click="goToDetail(products[0].productId, 'product')">
           <div class="order-item-header">自提 蜜雪冰城（新华学院校内店）</div>
           <div class="order-item-content">
-            <div class="order-item-image"></div>
+           
+              <img class="order-item-image" :src="products[0].imageUrl" alt="">
+          
             <div class="order-item-info">
-              <div class="order-item-name">桑葚莓莓(升级版)</div>
-              <div class="order-item-note">少冰/不额外加糖</div>
+              <div class="order-item-name">{{products[0].name}}</div>
+              <div class="order-item-note">{{products[0].description}}</div>
             </div>
           </div>
           <div class="order-item-actions">
@@ -27,13 +29,13 @@
       </div>
         </div>
 
-         <div class="order-item">
+         <div class="order-item" @click="goToDetail(products[1].productId, 'product')">
           <div class="order-item-header">自提 蜜雪冰城（新华学院校内店）</div>
           <div class="order-item-content">
-            <div class="order-item-image"></div>
+             <img class="order-item-image" :src="products[1].imageUrl" alt="">
             <div class="order-item-info">
-              <div class="order-item-name">桑葚莓莓(升级版)</div>
-              <div class="order-item-note">少冰/不额外加糖</div>
+              <div class="order-item-name">{{products[1].name}}</div>
+              <div class="order-item-note">{{products[1].description}}</div>
             </div>
           </div>
           <div class="order-item-actions">
@@ -54,17 +56,17 @@
       <h2 class="section-title">可能喜欢</h2>
       <div class="products-grid">
         <!-- 复制粘贴 -->
-        <div class="product-card">
-          <div class="product-image"></div>
+        <div class="product-card"  @click="goToDetail(products[0].productId, 'product')">
+          <img class="product-image" :src="products[0].imageUrl" alt="">
           <div class="product-info">
-            <div class="product-name">草莓啵啵</div>
+            <div class="product-name">{{products[0].name}}</div>
             <div class="product-tags">
-              <span class="product-tag">清甜爽口</span>
-              <span class="product-tag">人气明星</span>
+              <span class="product-tag">{{ products[0].category }}</span>
+              <span class="product-tag"></span>
             </div>
-            <div class="product-description">草莓啵啵，甜蜜啵一个</div>
+            <div class="product-description">{{products[0].description}}</div>
             <div class="product-price">
-              <div class="price">¥9 <span class="price-start">起</span></div>
+              <div class="price">¥{{products[0].price}} <span class="price-start">起</span></div>
               <div class="add-button">+</div>
             </div>
           </div>
@@ -72,27 +74,44 @@
         
         <div class="product-card">
           <div class="product-image">
+            <img class="product-image" :src="products[2].imageUrl" alt="">
             <div class="sold-out">本店暂时售罄</div>
           </div>
           <div class="product-info">
-            <div class="product-name">柠檬乌龙茶</div>
-            <div class="product-description">鲜柠配乌龙，柠檬茶新宠</div>
+            <div class="product-name">{{products[2].name}}</div>
+            <div class="product-description">{{products[2].description}}</div>
             <div class="product-price">
-              <div class="price">¥5 <span class="price-start">起</span></div>
+              <div class="price">¥{{products[2].price}} <span class="price-start">起</span></div>
             </div>
           </div>
         </div>
-        <div class="product-card">
-          <div class="product-image"></div>
+        <div class="product-card"  @click="goToDetail(products[3].productId, 'product')">
+          <img class="product-image" :src="products[3].imageUrl" alt="">
           <div class="product-info">
-            <div class="product-name">草莓啵啵</div>
+            <div class="product-name">{{products[3].name}}</div>
             <div class="product-tags">
               <span class="product-tag">清甜爽口</span>
               <span class="product-tag">人气明星</span>
             </div>
-            <div class="product-description">草莓啵啵，甜蜜啵一个</div>
+            <div class="product-description">{{products[3].description}}</div>
             <div class="product-price">
-              <div class="price">¥9 <span class="price-start">起</span></div>
+              <div class="price">¥{{products[3].price}} <span class="price-start">起</span></div>
+              <div class="add-button">+</div>
+            </div>
+          </div>
+        </div>
+
+         <div class="product-card"  @click="goToDetail(products[4].productId, 'product')">
+          <img class="product-image" :src="products[4].imageUrl" alt="">
+          <div class="product-info">
+            <div class="product-name">{{products[4].name}}</div>
+            <div class="product-tags">
+              <!-- <span class="product-tag">清甜爽口</span>
+              <span class="product-tag">人气明星</span> -->
+            </div>
+            <div class="product-description">{{products[4].description}}</div>
+            <div class="product-price">
+              <div class="price">¥{{products[4].price}} <span class="price-start">起</span></div>
               <div class="add-button">+</div>
             </div>
           </div>
@@ -102,7 +121,22 @@
     </div>
   </div>
 </template>
-<style >
+<script setup>
+import ProductList from '../../../public/ProductList.json'
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const products = ProductList.productList
+console.log(products[0].name);
+const goToDetail = (id , type) => {
+  if(type === 'product'){
+    router.push({ name: 'DetailsView', params: { id } });
+  }else{
+    router.push({ name: 'snackDetail', params: { id } });
+  }
+}
+</script>
+
+<style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -276,6 +310,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
+   margin-bottom: 60px;
 }
 
 .product-card {

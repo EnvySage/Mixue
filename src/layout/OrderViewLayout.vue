@@ -1,6 +1,7 @@
 <template>
     <div class="scroll-container">
         <div class="header">
+            {{  }}
             <TopBar class="top-bar"></TopBar>
             <destinationCard class="destination-card"></destinationCard>
             <breadTitle class="bread-title-container"></breadTitle>
@@ -30,18 +31,16 @@ const snackStore = useSnackStore();
 
 const ShowCar = ref(false);
 const cartlist = ref([]);
-
 onMounted(async () => {
     await productStore.getAll();
     await snackStore.getAll();
-    cartlist.value = shopCar.getCartItems(); // 使用 getCartItems 方法获取合并后的购物车列表
+    cartlist.value = shopCar.getCartItems(); 
     if (cartlist.value.length > 0) {
         ShowCar.value = true;
     }
 });
-
 watch(
-    () => shopCar.getCartItems(), // 监听购物车的变化
+    () => shopCar.getCartItems(), 
     (newVal) => {
         cartlist.value = newVal;
         if (newVal.length > 0 && ShowCar.value === false) {

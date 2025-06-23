@@ -5,13 +5,21 @@ import { ref } from 'vue';
 export const useShopCar = defineStore('shopCar', () => {
   const cart = ref([]);
 
-  const addToCart = (id, num, type) => {
-    if (cart.value.some(item => item.id === id && item.type === type)) {
-      cart.value.find(item => item.id === id && item.type === type).num += num;
+  const addToCart = (product, num = 1) => {
+    // 支持旧参数格式(id, num, type)或新格式(product对象)
+    const item = typeof product === 'object' 
+      ? { ...product, num: product.num || num }
+      : { id: product, num, type: 'product' };
+    
+    const { id, type = 'product' } = item;
+    
+    const existingItem = cart.value.find(item => item.id === id && item.type === type);
+    if (existingItem) {
+      existingItem.num += item.num || 1;
     } else {
-      cart.value.push({ id, num, type}); // 添加 type 和 selected 属性
+      cart.value.push(item);
     }
-    console.log(cart.value);
+    console.log('购物车内容:', cart.value);
   };
 
   const getCartItems = () => {

@@ -1,12 +1,24 @@
 // src/stores/order.js
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
+import { useProductStore } from '../stores/products';
+import { useSnackStore } from '../stores/snack';
 
 export const useOrderStore = defineStore('orders', () => {
   const orders = ref([]);
   const currentOrderId = ref(0); // 初始化订单ID计数器
 
   const currentOrder = ref({ id: null, items: [] });
+
+  const calculateTotalPrice = (cartItems) => {
+    let total = 0;
+    for (const item of cartItems) {
+      if (item.price) {
+        total += item.price;
+      }
+    }
+    return total;
+  };
 
   const createOrder = async (cartItems) => {
     if (!cartItems || !cartItems.length) {
@@ -47,5 +59,6 @@ export const useOrderStore = defineStore('orders', () => {
     createOrder,
     getAllOrders,
     getOrderById,
+    calculateTotalPrice,
   };
 });

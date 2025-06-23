@@ -51,7 +51,6 @@ const signData = ref([]);
 signData.value = json.sign;
 const serverData = ref([]);
 serverData.value = json.moreserver;
-const powerItem = ref(null);
 const powerItemContainers = ref([]);
 
 // 计算需要滚动到的容器索引
