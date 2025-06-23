@@ -26,7 +26,7 @@
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
       <div class="price-info">
-        <span class="current-price">¥{{ double.price * quantity }}</span>
+        <span class="current-price">¥{{ (double.price * quantity).toFixed(1) }}</span>
         <span class="original-price">¥{{ (double.price * 1.2).toFixed(1) }}</span>
       </div>
       <div class="quantity-selector">

@@ -6,7 +6,6 @@ export const useShopCar = defineStore('shopCar', () => {
   const cart = ref([]);
 
   const addToCart = (product, num = 1) => {
-    // 支持旧参数格式(id, num, type)或新格式(product对象)
     const item = typeof product === 'object' 
       ? { ...product, num: product.num || num }
       : { id: product, num, type: 'product' };

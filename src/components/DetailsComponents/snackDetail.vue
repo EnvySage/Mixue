@@ -27,7 +27,7 @@
     <div class="bottom-bar">
       <div class="price-info">
         <span class="current-price">¥{{ snack.price * quantity }}</span>
-        <span class="original-price">¥{{ (snack.price * 1.2).toFixed(1) }}</span>
+        <span class="original-price">¥{{ (snack.price*quantity * 1.2).toFixed(1) }}</span>
       </div>
       <div class="quantity-selector">
         <button class="quantity-btn" @click="quantity > 1 && quantity--">-</button>
@@ -118,7 +118,7 @@ const buyNow = async () => {
 
     // 创建订单
     const orderStore = useOrderStore();
-    const order = await orderStore.createOrder([orderItem]);
+    await orderStore.createOrder([orderItem]);
     
     // 跳转到订单确认页
     history.back();
