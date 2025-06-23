@@ -54,7 +54,7 @@
         <div
           v-for="option in extras"
           :key="option.name"
-          class="extra-option"
+          :class="['extra-option', { active: option.selected }]"
           @click="selectExtras(option)"
         >
           <span>{{ option.name }}（¥{{ option.price }}）</span>
@@ -72,7 +72,7 @@
     <!-- 底部操作栏 -->
     <div class="bottom-bar">
       <div class="price-info">
-        <span class="current-price">¥{{ product.price*quantity }}</span>
+        <span class="current-price">¥{{ totalPrice }}</span>
         <span class="original-price">¥{{ (product.price*quantity * 1.2).toFixed(1) }}</span>
       </div>
       <div class="quantity-selector">
@@ -90,7 +90,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useProductStore } from "@/stores/products";
 import { useShopCar } from "@/stores/shopCar";
@@ -114,6 +114,15 @@ const extras = ref([]);
 
 const product = ref(null);
 const snack = ref(null); // 添加 snack 变量
+
+// 计算总价格（基础价格+加料价格）
+const totalPrice = computed(() => {
+  const basePrice = product.value?.price || 0;
+  const extrasPrice = extras.value
+    .filter(e => e.selected)
+    .reduce((sum, e) => sum + e.price, 0);
+  return (basePrice + extrasPrice) * quantity.value;
+});
 
 onMounted(async () => {
   try {
@@ -171,7 +180,7 @@ const addCart = async () => {
       selectedTemperature: selectedTemperature?.name || '',
       selectedSugar: selectedSugar?.name || '',
       selectedExtras: selectedExtras.map(e => e.name),
-      price: fullProduct.price * quantity.value
+      price: totalPrice.value
     };
     shopcarStore.addToCart(cartItem);
   }
@@ -197,7 +206,7 @@ const buyNow = async () => {
       selectedTemperature: selectedTemperature?.name || '',
       selectedSugar: selectedSugar?.name || '',
       selectedExtras: selectedExtras.map(e => e.name),
-      price: fullProduct.price * quantity.value
+      price: totalPrice.value
     };
 
     // 创建订单
@@ -326,6 +335,12 @@ const goBack = () => {
   border: 1px solid #ddd;
   margin-bottom: 5px;
   font-size: 14px;
+  cursor: pointer;
+}
+
+.extra-option.active {
+  background-color: #fff2f0;
+  border-color: #ff4d4f;
 }
 
 .add-extra-btn {

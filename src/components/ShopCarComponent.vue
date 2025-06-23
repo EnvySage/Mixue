@@ -11,14 +11,21 @@
                     <span @click="clearCar">清空购物车</span>
                 </div>
             </div>
-            <div class="productList" style="max-height: 200px; overflow-y: auto; overflow-x: hidden;">
+            <div class="productList" style="max-height: 280px; overflow-y: auto; overflow-x: hidden;">
                 <div class="product" v-for="item in cartItems" :key="item.id">
                     <input type="checkbox" v-model="item.selected" @change="updateSelectAll"/>
                     <img :src="item.type === 'product' ? productStore.products[item.id-1].imageUrl : snackStore.snacks[item.id-101].imageUrl" style="width: 70px;height: 70px; border-radius: 50%;">
                     <div class="product-info" style="width: 45%;">
                         <div class="product-name">{{ item.type === 'product' ? productStore.products[item.id-1].name : snackStore.snacks[item.id-101].name }}</div>
-                        <div class="product-desc" style="font-size: 10px; width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ item.type === 'product' ? productStore.products[item.id-1].description : snackStore.snacks[item.id-101].description }}</div>
-                        <div class="product-price">¥{{ item.type === 'product' ? productStore.products[item.id-1].price : snackStore.snacks[item.id-101].price }}</div>
+                        <div class="product-desc" style="font-size: 10px; width: 70%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            {{ item.type === 'product' ? productStore.products[item.id-1].description : snackStore.snacks[item.id-101].description }}
+                            <div v-if="item.selectedTemperature" style="margin-top: 5px;">温度: {{ item.selectedTemperature }}</div>
+                            <div v-if="item.selectedSugar" style="margin-top: 2px;">糖度: {{ item.selectedSugar }}</div>
+                            <div v-if="item.selectedExtras && item.selectedExtras.length > 0" style="margin-top: 2px;">
+                                加料: {{ item.selectedExtras.join(',') }}
+                            </div>
+                        </div>
+                        <div class="product-price">¥{{ item.price }}</div>
                     </div>
                     <div class="price">
                       <div class="nums">
@@ -97,7 +104,7 @@ const quan = computed(() => {
 
 const sum = computed(() => {
     return cartItems.value.reduce((total, item) => {
-        return item.selected ? total + item.num * (item.type === 'product' ? productStore.products[item.id-1].price : snackStore.snacks[item.id-101].price) : total;
+        return item.selected ? total + (item.price || 0) * item.num : total;
     }, 0);
 });
 
