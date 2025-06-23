@@ -71,12 +71,6 @@ const router = createRouter({
           name:'listhistory',
           component:()=> import('../components/ListComponents/listhistory.vue'),
         },   
-        {
-          path:'listchargeback',
-          name:'listchargeback',
-          component:()=> import('../components/ListComponents/listchargeback.vue'),
-         
-        },  
       ]
     },
     
