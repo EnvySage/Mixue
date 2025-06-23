@@ -19,7 +19,7 @@
 
 
         <div class="bottom-features">
-            <router-link to="/gift" class="bottom-item">
+            <router-link to="/giftcard" class="bottom-item">
                 <img src="/src/img/main/card.png" alt="礼品卡">
                 <p>礼品卡</p>
                 <p class="sub-desc">送TA心意</p>

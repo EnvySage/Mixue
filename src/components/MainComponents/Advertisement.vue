@@ -2,11 +2,7 @@
   <div class="page-content">
     <div class="sweet-news-container">
       <h2 class="sweet-news-title">甜蜜资讯</h2>
-      <swiper 
-        class="sweet-news-swiper" 
-        :modules="[Autoplay]" 
-        :autoplay="{ delay: 3000, disableOnInteraction: false }"
-      >
+      <swiper class="sweet-news-swiper" :modules="[Autoplay]" :autoplay="{ delay: 3000, disableOnInteraction: false }">
         <swiper-slide v-for="(item, index) in newsList" :key="index">
           <router-link :to="item.link" class="news-item">
             <img :src="item.image" :alt="item.alt" class="news-image">
@@ -27,12 +23,12 @@ const newsList = [
   {
     image: '/src/img/main/adv1.png',
     alt: '雪王礼品卡企业采购专区',
-    link: '/gift' 
+    link: '/giftcard'
   },
   {
     image: '/src/img/main/adv2.png',
     alt: '另一张甜蜜资讯',
-    link: '/red' 
+    link: '/red'
   }
 ];
 </script>
@@ -45,7 +41,7 @@ const newsList = [
   padding: 16px;
   background-color: #f5f5f5;
   z-index: 1;
-  position: relative; 
+  position: relative;
 }
 
 .sweet-news-container {
@@ -64,7 +60,7 @@ const newsList = [
 
 .sweet-news-swiper {
   width: 100%;
-  height: 160px; 
+  height: 160px;
   border-radius: 8px;
   overflow: hidden;
 }

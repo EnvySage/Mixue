@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import Homepicture from './Homepicture.vue';
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const vipInfo = ref({
   level: '小雪球会员',
   number: '138******78',
@@ -36,8 +37,10 @@ const togglePrivileges = () => {
 
       <div class="points-progress">
         <div class="progress-text">
-          <span class="points-value">{{ vipInfo.points }}</span>
-          <span class="points-label">雪王币</span>
+          <router-link to="/money" class="points-link" @click="goToPointsPage">
+            <span class="points-value">{{ vipInfo.points }}</span>
+            <span class="points-label">雪王币</span>
+          </router-link>
         </div>
         <div class="progress-bar">
           <div class="progress" :style="{ width: vipInfo.progress + '%' }"></div>
@@ -45,10 +48,10 @@ const togglePrivileges = () => {
         <div class="progress-label">{{ vipInfo.progress }}/100</div>
       </div>
 
-      <div class="coupon-info">
+      <router-link to="/vouchers" class="coupon-info">
         <span class="coupon-icon">🎫</span>
         <span class="coupon-count">{{ vipInfo.coupons }}张优惠券</span>
-      </div>
+      </router-link>
 
       <div class="vip-privileges" @click="togglePrivileges">
         <span class="privilege-label">会员特权</span>
@@ -64,7 +67,7 @@ const togglePrivileges = () => {
           <span class="close-btn" @click="togglePrivileges">×</span>
         </div>
         <div class="modal-body">
-          <p class="privilege-tip">您有*项权益，开启提醒不错过</p>
+          <p class="privilege-tip">您有5项权益，开启提醒不错过</p>
 
           <div class="privilege-section">
             <h3>每日礼</h3>
@@ -219,7 +222,6 @@ const togglePrivileges = () => {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 8px 0;
   color: #ff6b6b;
 }
 
@@ -347,4 +349,11 @@ const togglePrivileges = () => {
   font-size: 14px;
   text-align: right;
 }
+.points-link {
+  display: inline-flex; 
+  align-items: center;
+  gap: 4px; 
+
+}
+
 </style>
