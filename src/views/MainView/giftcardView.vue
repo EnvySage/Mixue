@@ -1,7 +1,9 @@
 <template>
   <div class="gift-card-container">
     <!-- 顶部标题栏 -->
-    
+    <div class="back-button" @click="goBack">
+      <div class="iconfont icon-fanhui"></div>
+    </div>
     
     <!-- 选项卡导航 -->
     <div class="tabs">
@@ -84,7 +86,9 @@ const designs = ref([
   { background: 'linear-gradient(135deg, #2196F3, #0D47A1)', text: '感恩' },
   { background: 'linear-gradient(135deg, #9C27B0, #6A1B9A)', text: '祝福' }
 ])
-
+const goBack = () => {
+  history.back();
+};
 // 动态卡面背景和文字
 const cardBackground = computed(() => designs.value[activeDesign.value].background)
 const cardText = computed(() => designs.value[activeDesign.value].text)
@@ -97,7 +101,19 @@ const cardText = computed(() => designs.value[activeDesign.value].text)
   box-sizing: border-box;
   font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
 }
+.back-button {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  z-index: 10000;
+}
 
+.iconfont {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  font-size: 18px;
+  padding: 10px;
+}
 .gift-card-container {
   background: linear-gradient(135deg, #fff8f0, #fff0e6);
   color: #333;
