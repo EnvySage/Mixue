@@ -1,0 +1,136 @@
+{
+  "snackList": [
+    {
+      "productId": "101",
+      "name": "咖啡",
+      "description": "香浓可口，提神醒脑",
+      "specification": "净含量：200ml",
+      "shelf_life": "12个月",
+      "price": 10,
+      "exchange_rate": {
+        "snow_coin": 500,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E5%92%96%E5%95%A1.webp"
+
+    },
+    {
+      "productId": "102",
+      "name": "山楂棒",
+      "description": "配料干净，酸甜爽口",
+      "specification": "净含量：20g",
+      "shelf_life": "9个月",
+      "price": 1,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E5%B1%B1%E6%A5%82%E6%A3%92.webp"
+    },
+    {
+      "productId": "103",
+      "name": "核桃仁",
+      "description": "营养丰富，补脑益智",
+      "specification": "净含量：50g",
+      "shelf_life": "12个月",
+      "price": 5,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E6%A0%B8%E6%A1%83%E4%BB%81.webp"
+    },
+    {
+      "productId": "104",
+      "name": "毛肚",
+      "description": "口感爽脆，麻辣鲜香",
+      "specification": "净含量：100g",
+      "shelf_life": "6个月",
+      "price": 15,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E6%AF%9B%E8%82%9A.webp"
+    },
+    {
+      "productId": "105",
+      "name": "玉米肠",
+      "description": "香甜可口，营养丰富",
+      "specification": "净含量：30g",
+      "shelf_life": "9个月",
+      "price": 2,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E7%8E%89%E7%B1%B3%E8%82%A0.webp"
+    },
+    {
+      "productId": "106",
+      "name": "薯片",
+      "description": "香脆可口，多种口味",
+      "specification": "净含量：50g",
+      "shelf_life": "12个月",
+      "price": 3,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E8%96%AF%E7%89%87.webp"
+    },
+    {
+      "productId": "107",
+      "name": "豆腐",
+      "description": "肉厚多汁，越吃越好吃，一口爆汁，甜辣咸香，酱香四溢，鲜嫩爽滑，采用充氮工艺技术保鲜",
+      "specification": "净含量：20g",
+      "shelf_life": "9个月",
+      "price": 1,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E8%B1%86%E8%85%90.webp"
+    },
+    {
+      "productId": "108",
+      "name": "锅巴",
+      "description": "香脆可口，传统小吃",
+      "specification": "净含量：50g",
+      "shelf_life": "12个月",
+      "price": 4,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E9%94%85%E5%B7%B4.webp"
+
+    },
+    {
+      "productId": "109",
+      "name": "鸡丝",
+      "description": "口感细腻，营养丰富",
+      "specification": "净含量：100g",
+      "shelf_life": "6个月",
+      "price": 10,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E9%B8%A1%E4%B8%9D.webp"
+    },
+    {
+      "productId": "110",
+      "name": "鸡爪",
+      "description": "口感劲道，麻辣鲜香",
+      "specification": "净含量：100g",
+      "shelf_life": "6个月",
+      "price": 12,
+      "exchange_rate": {
+        "snow_coin": 0,
+        "exchange_button": true
+      },
+      "imageUrl": "https://mi-xue1.oss-cn-shenzhen.aliyuncs.com/%E8%9C%9C%E9%9B%AA/%E5%B0%8F%E9%9B%B6%E9%A3%9F/%E9%B8%A1%E7%88%AA.webp"
+    }
+  ]
+}
