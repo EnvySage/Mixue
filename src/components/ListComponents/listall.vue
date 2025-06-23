@@ -13,19 +13,18 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { useOrderStore } from '@/stores/order.js'; // 导入 Pinia store
+import { useOrderStore } from '@/stores/order.js'; 
 import list from '@/components/ListComponents/list.vue';
-import axios from 'axios';
 
 const router = useRouter();
-const orderStore = useOrderStore(); // 使用 Pinia store
+const orderStore = useOrderStore();
 const orders = ref([]);
 
 
 onMounted(async() => {
     orders.value = orderStore.getAllOrders();
     console.log('获取到的订单数据：', orders.value); // 添加日志
-    console.log('获取到的订单数据：', orders.value[0].id); // 添加日志
+
 });
 
 const navigateToDetail = (order) => {

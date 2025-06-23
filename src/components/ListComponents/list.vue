@@ -11,7 +11,7 @@
 
     <!-- 商品图片 -->
     <div class="product-images">
-      <!-- <img  v-for="img in productDetails.products" :alt="`商品图片`" /> -->
+      <img  v-for="img in props.order.items" :alt="`商品图片`" :key="img.id"  :src="img.imgUrl"/>
     </div>
 
     <!-- 日期和时间 -->
@@ -58,15 +58,8 @@ const handleOrderClick=()=>{
 };
 
 
-onMounted(async () => {
- await productStore.getAll();
- await snackStore.getAll();
-})
 // 动态设置时间
 const formattedTime = ref(new Date().toLocaleString()); // 使用当前时间
-const productDetails=ref();
-const snackDetails=ref();
-const shopDetails=ref();
 
 
 const quantity= ()=>{
@@ -75,22 +68,6 @@ const quantity= ()=>{
     totalNum += item.num;
   });
     return totalNum;
-};
-
-const price=()=>{
-  let totalPrice = 0;
-  props.order.items.forEach(async (item) => {
-    if (item.type === 'product') {
-      await productStore.getById(item.id).then(res => {
-        totalPrice += res.price * item.num;
-      })
-    } else if (item.type ==='snack') {
-      await snackStore.getById(item.id).then(res => {
-        totalPrice += res.price * item.num;
-      })
-    }
-  });
-  return totalPrice;
 };
 
 
@@ -112,8 +89,6 @@ const price=()=>{
 //   // 跳转到详细页面
 //   router.push({ name: 'listdetail', params: { orderId: props.order.id } });
 // };
-
-console.log('接收到的订单数据：', props.order);
 </script>
 
 <style scoped>

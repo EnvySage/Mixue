@@ -91,6 +91,7 @@ const addCart = async () => {
     const cartItem = {
       ...fullSnack,
       id: fullSnack.productId,
+      imgUrl: fullSnack.imageUrl,
       type: 'snack',
       num: quantity.value,
       price: fullSnack.price * quantity.value

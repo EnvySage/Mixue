@@ -55,11 +55,10 @@
           v-for="option in extras"
           :key="option.name"
           class="extra-option"
+          @click="selectExtras(option)"
         >
           <span>{{ option.name }}（¥{{ option.price }}）</span>
-          <div class="add-extra-btn" @click="selectExtras(option)">
-            <i class="plus-icon">+</i>
-          </div>
+          <span v-if="option.selected" class="selected-icon">✔</span>
         </div>
       </div>
     </div>

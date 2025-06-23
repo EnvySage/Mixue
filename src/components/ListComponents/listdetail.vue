@@ -1,8 +1,6 @@
 <template>
 
   <div class="body" v-if="!loading">
-    <!-- 顶部区域 -->
-    <!-- 左上角的返回按钮 -->
     <div class="back-button">
       <button @click="goBack">返回</button>
     </div>
@@ -53,18 +51,18 @@
           </div>
         </div>
         <!-- 商品详情 -->
-        <div class="product-info" v-for="orders in order">
+        <div class="product-info" v-for="(o,index) in order.items" :key="index">
           <div class="product-image">
-            <img :src="`${order[orderId - 1].items[0].imgUrl}`" :alt="`商品图片`" />
+            <img :src="`${o.imgUrl}`" :alt="`商品图片`" />
           </div>
           <div class="product-details">
-            <p class="product-name">{{ order[orderId - 1].items[0].name }}</p>
-            <p class="product-spec">{{ order[orderId - 1].items[0].selectedSugar }}/{{
-              order[orderId - 1].items[0].selectedTemperature }}</p>
-            <p class="product-quantity">x {{ order[orderId - 1].items[0].num }}</p>
+            <p class="product-name">{{ o.name }}</p>
+            <p class="product-spec">{{ o.selectedSugar }}/{{
+              o.selectedTemperature }}</p>
+            <p class="product-quantity">x {{ o.num }}</p>
           </div>
           <div class="product-price">
-            <p class="price">共{{  }}件，合计 <span class="highlight">¥{{ price }}</span></p>
+            <p class="price">共{{ quantity() }}件，合计 <span class="highlight">¥{{ price() }}</span></p>
           </div>
         </div>
       </div>
@@ -119,33 +117,22 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, onMounted } from 'vue';
+import { defineProps, ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { useProductStore } from '@/stores/products';
-import { useSnackStore } from '@/stores/snack';
-import { useShopCar } from '@/stores/shopCar';
 import { useOrderStore } from '@/stores/order';
 import Advertisement from '../MainComponents/Advertisement.vue';
 
 const router = useRouter();
 const route = useRoute();
 const OrderStore = useOrderStore();
-const orderId = route.params.id;
+const orderId = Number(route.params.id);
 const order = ref({});
 const loading = ref(true);
 
 onMounted(async () => {
   try {
-    await OrderStore.getOrderById(orderId);
-    order.value = OrderStore.orders
-    const price= (()=>{
-      let totalPrice = 0;
-      order.items.forEach(item => {
-        totalPrice += item.price;
-      });
-        return totalPrice;
-    });
-
+    order.value = await OrderStore.getOrderById(orderId);
+    console.log(order.value);
   } catch (err) {
     console.log(err);
   } finally {
@@ -154,21 +141,26 @@ onMounted(async () => {
 });
 // 动态设置时间
 const formattedTime = ref(new Date().toLocaleString()); // 使用当前时间
-const productDetails = ref();
-const snackDetails = ref();
-const shopDetails = ref();
 
 const goBack = () => {
   // 跳转到 listall 页面
   router.push({ name: 'listall' });
 };
-// const quantity= ()=>{
-//   let totalNum = 0;
-//   order[0].items.forEach(item => {
-//     totalNum += item.num;
-//   });
-//     return totalNum;
-// };
+
+const quantity= ()=>{
+  let totalNum = 0;
+  order.value.items.forEach(item => {
+    totalNum += item.num;
+  });
+    return totalNum;
+};
+const price= ()=>{
+  let totalprice = 0;
+  order.value.items.forEach(item => {
+    totalprice += item.price;
+  });
+    return totalprice;
+};
 
 
 
@@ -200,25 +192,6 @@ const goBack = () => {
 
 //   return totalprice;
 // };
-
-
-
-// const price=()=>{
-//   let totalPrice = 0;
-//   props.order.items.forEach(async (item) => {
-//     if (item.type === 'product') {
-//       await productStore.getById(item.id).then(res => {
-//         totalPrice += res.price * item.num;
-//       })
-//     } else if (item.type ==='snack') {
-//       await snackStore.getById(item.id).then(res => {
-//         totalPrice += res.price * item.num;
-//       })
-//     }
-//   });
-//   return totalPrice;
-// };
-
 
 
 

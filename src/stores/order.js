@@ -48,7 +48,7 @@ export const useOrderStore = defineStore('orders', () => {
   };
 
   const getOrderById = (orderId) => {
-    const order = orders.value.find(item => item.id === orderId);
+    const order = orders.value.find(item => item.id == orderId);
     console.log('获取订单：', order);
     return order;
   };
