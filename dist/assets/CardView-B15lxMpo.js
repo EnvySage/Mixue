@@ -1,1 +1,0 @@
-import{_ as r,c as t,d as n,b as a}from"./index-BVNTGA3w.js";const c={};function o(s,e){return a(),t("div",null,e[0]||(e[0]=[n("h1",null,"Gift card",-1)]))}const l=r(c,[["render",o]]);export{l as default};
