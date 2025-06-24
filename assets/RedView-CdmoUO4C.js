@@ -1,1 +1,0 @@
-import{_ as a,c as r,a as t,u as c,o as n}from"./index-Br6F0raF.js";const _="/Mixue/assets/red1-Dh7FHVre.jpg",u={__name:"RedView",setup(l){const s=c(),o=()=>{s.back()};return(p,e)=>(n(),r("div",null,[e[0]||(e[0]=t("img",{src:_,alt:""},null,-1)),t("button",{onClick:o},"<")]))}},i=a(u,[["__scopeId","data-v-6587698d"]]);export{i as default};

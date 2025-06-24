@@ -1,1 +1,0 @@
-import{_ as r,c as t,a,o as n}from"./index-Br6F0raF.js";const o={};function c(s,e){return n(),t("div",null,e[0]||(e[0]=[a("h1",null,"Gift card",-1)]))}const d=r(o,[["render",c]]);export{d as default};
