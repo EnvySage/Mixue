@@ -104,8 +104,7 @@
 <script setup>
 // 不需要响应式数据，纯静态页面
 import { ref } from 'vue';
-import axios from 'axios';
-import json from '../../../public/power.json';
+import json from '../../data/power.json';
 const complete1 = ref(false);
 const complete = ref(false);
 const complete2 = ref(false);

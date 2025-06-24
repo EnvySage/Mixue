@@ -37,7 +37,7 @@
 <script setup>
 import power_nav_content from "../../components/OwnComponents/powercomponent/power_nav_content.vue";
 import power_nav_exp from "@/components/OwnComponents/powercomponent/power_nav_exp.vue";
-import json from "../../../public/power.json";
+import json from "../../data/power.json";
 import { ref, defineProps,watch,onMounted } from "vue";
 const phone = ref("138******78");
 const jsonData = ref([]);
