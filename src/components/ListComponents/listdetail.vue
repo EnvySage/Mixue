@@ -75,7 +75,7 @@
           <tbody>
             <tr>
               <td>下单时间</td>
-              <td>2025-04-09 16:02:15</td>
+              <td>{{ formattedTime }}</td>
             </tr>
             <tr>
               <td>订单编号</td>
