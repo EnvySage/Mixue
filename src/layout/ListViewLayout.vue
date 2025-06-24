@@ -18,6 +18,6 @@ import MainNav from '../components/MainNav.vue'
 .list-view-layout {
     width: 100%;
     height: 100vh;
-    background-color: lightgray;
+    background-color: rgb(250, 247, 247);
 }
 </style>

@@ -239,6 +239,7 @@ const price= ()=>{
 
 .order-status {
   flex: 1;
+   margin-top: 10px;
 }
 
 .status-title {

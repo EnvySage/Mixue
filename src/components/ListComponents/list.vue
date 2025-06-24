@@ -25,7 +25,9 @@
     </div>
 
     <!-- 操作按钮 -->
-    <button class="reorder-btn">再来一单</button>
+  </div>
+  <div class="button"> 
+    <button class="reorder-btn" @click="handleButtonClick">再来一单</button>
   </div>
 </template>
 
@@ -70,7 +72,12 @@ const quantity= ()=>{
     return totalNum;
 };
 
-
+const handleButtonClick = () => {
+  console.log('用户点击了“添加内容”');
+  // 在实际项目中，可以跳转到添加内容的页面，例如：
+  // router.push('/add-content');
+  router.push({ name: 'OrderView'});
+};
 // const handleOrderClick = async () => {
 //   if (props.order.type === 'product') {
 //     productDetails = await productStore.getById(props.order.id);
@@ -99,7 +106,7 @@ const quantity= ()=>{
   padding: 16px;
   position: relative; /* 使按钮相对订单项定位 */
   border-bottom: 1px solid #e0e0e0;
-  margin: 50px 0px; /* 订单之间间距 */
+  margin: 50px 8px; /* 订单之间间距 */
   border-radius: 10px; /* 订单框圆角 */
 }
 
@@ -165,13 +172,17 @@ const quantity= ()=>{
   font-weight: bold;
 }
 
+/* 按钮容器 */
+.button {
+  position: relative;
+  margin-top: -30px;
+}
+
 /* 操作按钮 */
 .reorder-btn {
   position: absolute;
-  display: block;
-  text-align: center;
-  bottom: 20px;
-  right: 10px;
+  right: 15px;
+  bottom: 30px;
   padding: 8px 16px;
   background-color: #fff;
   color: red;
