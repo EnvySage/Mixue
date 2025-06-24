@@ -38,7 +38,7 @@
     display: inline-block;
     width: 50px;
     height: 50px;
-    background-image: url('src/img/蜜雪冰城.png');
+    background-image: url('../../img/蜜雪冰城.png');
     border-radius: 50%;
     background-color: #fff7fa;
     background-size: cover;

@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref,onMounted,watch } from 'vue'
-import json from '../../public/power.json'
+import json from '../data/power.json'
 import coma from '@/components/OwnComponents/coma.vue'
 import power from '@/components/OwnComponents/power.vue'
 import sign from '@/components/OwnComponents/sign.vue'

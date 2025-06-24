@@ -122,7 +122,7 @@
   </div>
 </template>
 <script setup>
-import ProductList from '../../../public/ProductList.json'
+import ProductList from '../../data/ProductList.json'
 import { useRouter } from 'vue-router';
 const router = useRouter();
 const products = ProductList.productList

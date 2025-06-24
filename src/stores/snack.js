@@ -1,13 +1,14 @@
 import { ref} from 'vue'
 import { defineStore } from 'pinia'
 import { useShopCar } from './shopCar';
+import snackList from '../data/snack.json'
 
 export const useSnackStore = defineStore('snacks', () => {
   const snacks = ref([])
   const snack = ref({})
   const getAll=async()=>{
-    let res =await fetch('/snack.json')
-    let data =await res.json()
+    let res =snackList  
+    let data =res
     snacks.value=data.snackList
     return data.snackList
   }
