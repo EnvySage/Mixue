@@ -37,7 +37,7 @@ const togglePrivileges = () => {
 
       <div class="points-progress">
         <div class="progress-text">
-          <router-link to="/money" class="points-link" @click="goToPointsPage">
+          <router-link to="/money" class="points-link">
             <span class="points-value">{{ vipInfo.points }}</span>
             <span class="points-label">雪王币</span>
           </router-link>
