@@ -49,19 +49,23 @@ const prizes = [
 const currentPrize = ref('');
 const showResult = ref(false);
 const resultText = ref('');
+import bei from '../../img/main/bei.png';
+import bao from '../../img/main/bao.png';
+import cai from '../../img/main/cai.png';
+import liu from '../../img/main/liu.png';
 
 const prizesList = [
-    { name: '雪王流光杯', image: '/src/img/main/bei.png' },
-    { name: '雪王硅胶包', image: '/src/img/main/bao.png' },
-    { name: '雪王百变盲盒', image: '/src/img/main/cai.png' },
-    { name: '雪王溜溜球', image: '/src/img/main/liu.png' }
+    { name: '雪王流光杯', image: bei },
+    { name: '雪王硅胶包', image: bao },
+    { name: '雪王百变盲盒', image: cai },
+    { name: '雪王溜溜球', image: liu}
 ];
 
 const prizeImages = {
-    '雪王流光杯': '/src/img/main/bei.png',
-    '雪王硅胶包': '/src/img/main/bao.png',
-    '雪王百变盲盒': '/src/img/main/cai.png',
-    '雪王溜溜球': '/src/img/main/liu.png'
+    '雪王流光杯': bei,
+    '雪王硅胶包': bao,
+    '雪王百变盲盒': cai,
+    '雪王溜溜球': liu
 };
 
 const getPrizeImage = (prize) => {
@@ -94,7 +98,7 @@ const startDrawing = () => {
     width: 100vw;
     height: 100vh;
     padding: 20px;
-    background-image: url('/src/img/main/sea.png');
+    background-image: url('../../img/main/sea.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
