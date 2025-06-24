@@ -12,9 +12,6 @@
           <p class="status-title">订单已完成 取餐码：2839</p>
           <p class="status-message">订单已完成，祝您用餐愉快</p>
         </div>
-        <div class="snowman-icon">
-          <!-- 右侧雪人图案 -->
-        </div>
       </div>
     </div>
 

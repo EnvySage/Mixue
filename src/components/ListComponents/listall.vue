@@ -7,6 +7,8 @@
       :totalPrice="orderStore.calculateTotalPrice(order.items)"
       @order-clicked="navigateToDetail(order)"
     />
+         <!-- 当 orders 为空时显示 listnone 组件 -->
+    <listnone v-if="orders.length === 0" />
   </div>
 </template>
 
@@ -15,6 +17,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useOrderStore } from '@/stores/order.js'; 
 import list from '@/components/ListComponents/list.vue';
+import listnone from '@/components/ListComponents/listnone.vue';
 
 const router = useRouter();
 const orderStore = useOrderStore();
