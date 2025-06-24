@@ -1,12 +1,16 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
- 
+import swipe1 from '../../img/main/swipe1.png'
+import swipe2 from '../../img/main/swipe2.png'
+import swipe3 from '../../img/main/swipe3.png'
+import swipe4 from '../../img/main/swipe4.png'
+
 const indImg = ref(0);
 const images = ref([
-  '/src/img/main/swipe1.png',
-  '/src/img/main/swipe2.png',
-  '/src/img/main/swipe3.png',
-  '/src/img/main/swipe4.png',
+  swipe1,
+  swipe2,
+  swipe3,
+  swipe4
 ]);
  
 let timer = null;

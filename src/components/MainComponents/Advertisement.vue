@@ -18,15 +18,17 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/autoplay';
+import adv1 from '../../img/main/adv1.png'
+import adv2 from '../../img/main/adv2.png'
 
 const newsList = [
   {
-    image: '/src/img/main/adv1.png',
+    image: adv1,
     alt: '雪王礼品卡企业采购专区',
     link: '/giftcard'
   },
   {
-    image: '/src/img/main/adv2.png',
+    image: adv2,
     alt: '另一张甜蜜资讯',
     link: '/red'
   }
